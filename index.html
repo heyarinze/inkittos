@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inkitt OS</title>
+<style>
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-text-info: #2563eb;
+  --color-text-warning: #d97706;
+  --color-text-success: #059669;
+  --color-text-danger: #dc2626;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f9fafb;
+  --color-background-info: #eff6ff;
+  --color-background-warning: #fffbeb;
+  --color-background-success: #ecfdf5;
+  --color-background-danger: #fef2f2;
+  --color-border-secondary: #e5e7eb;
+  --color-border-tertiary: #f3f4f6;
+  --color-border-info: #bfdbfe;
+  --color-border-warning: #fde68a;
+  --color-border-success: #a7f3d0;
+  --color-border-danger: #fecaca;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: #f3f4f6;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.w { padding: 1rem 0; }
+.sys-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.3px; }
+.sys-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 18px; line-height: 1.6; }
+.tabs { display: flex; gap: 4px; margin-bottom: 14px; background: var(--color-background-secondary); padding: 3px; border-radius: var(--border-radius-md); }
+.tab { flex: 1; padding: 10px 6px; text-align: center; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); transition: all .15s; line-height: 1.3; font-family: var(--font-sans); }
+.tab.on { background: var(--color-background-primary); color: var(--color-text-primary); box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+.tab:hover:not(.on) { color: var(--color-text-primary); }
+.tab small { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; opacity: .7; }
+.pn { display: none; } .pn.on { display: block; }
+.pipe { display: flex; align-items: stretch; gap: 0; margin: 8px 0; flex-wrap: wrap; }
+.st { flex: 1; min-width: 85px; padding: 10px 12px; border-radius: var(--border-radius-md); }
+.st-t { font-size: 12.5px; font-weight: 500; margin-bottom: 3px; }
+.st-d { font-size: 10.5px; line-height: 1.5; opacity: .8; }
+.st-tool { font-size: 9.5px; margin-top: 5px; padding: 2px 7px; border-radius: 4px; display: inline-block; font-weight: 500; }
+.ar { display: flex; align-items: center; font-size: 15px; color: var(--color-text-tertiary); padding: 0 2px; flex-shrink: 0; }
+.note { font-size: 10.5px; color: var(--color-text-secondary); padding: 8px 12px; border-left: 2px solid var(--color-border-secondary); margin: 9px 0; line-height: 1.55; }
+.note strong { color: var(--color-text-primary); }
+.outs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.oc { flex: 1; min-width: 95px; padding: 8px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); }
+.oc-t { font-size: 11.5px; font-weight: 500; } .oc-d { font-size: 10px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.45; }
+.badge { font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 500; display: inline-block; margin-left: 3px; }
+.sl { font-size: 10.5px; font-weight: 500; letter-spacing: .4px; text-transform: uppercase; color: var(--color-text-secondary); margin: 14px 0 5px; }
+.lw { margin: 9px 0; padding: 12px; border-radius: var(--border-radius-lg); }
+.ll { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+.ll .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.fn { font-size: 10.5px; color: var(--color-text-secondary); margin: 6px 0 6px 4px; }
+.tog { display: flex; gap: 10px; margin-bottom: 9px; font-size: 11px; flex-wrap: wrap; }
+.tog label { display: flex; align-items: center; gap: 4px; cursor: pointer; user-select: none; color: var(--color-text-secondary); }
+.tog input { accent-color: var(--color-text-info); }
+.ts { display: flex; gap: 5px; flex-wrap: wrap; font-size: 10px; color: var(--color-text-tertiary); margin-top: 12px; align-items: center; }
+.tp { padding: 2px 7px; border-radius: 4px; background: var(--color-background-secondary); }
+.cmp { margin-top: 14px; padding: 12px; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+.cmp table { width: 100%; font-size: 10.5px; border-collapse: collapse; }
+.cmp td { padding: 5px 6px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.cmp tr:last-child td { border-bottom: none; }
+.cmp .hd { font-weight: 500; color: var(--color-text-secondary); }
+.vrc { margin-top: 12px; padding: 10px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-info); background: var(--color-background-info); font-size: 11px; line-height: 1.55; color: var(--color-text-info); }
+.vrc strong { font-weight: 500; }
+.pool { display: flex; gap: 5px; flex-wrap: wrap; margin: 6px 0; }
+.pc { padding: 5px 8px; border-radius: var(--border-radius-md); border: 0.5px dashed; font-size: 10px; text-align: center; min-width: 60px; flex: 1; }
+.lb { margin: 9px 0; padding: 10px 12px; border-radius: var(--border-radius-md); border: 1px dashed var(--color-border-secondary); background: var(--color-background-secondary); }
+.lb-t { font-size: 11.5px; font-weight: 500; margin-bottom: 5px; }
+.lb-s { font-size: 10.5px; line-height: 1.7; color: var(--color-text-secondary); }
+.lb-s strong { color: var(--color-text-primary); }
+.rel { margin: 10px 0; padding: 11px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-warning); background: var(--color-background-warning); }
+.rel-t { font-size: 11.5px; font-weight: 500; color: var(--color-text-warning); margin-bottom: 5px; }
+.rel-d { font-size: 10.5px; line-height: 1.55; color: var(--color-text-warning); }
+.cost { margin: 10px 0; padding: 10px 12px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-success); background: var(--color-background-success); }
+.cost-t { font-size: 11.5px; font-weight: 500; color: var(--color-text-success); margin-bottom: 4px; }
+.cost-d { font-size: 10.5px; line-height: 1.55; color: var(--color-text-success); }
+.lim { font-size: 10px; margin-top: 6px; padding: 5px 10px; border-radius: var(--border-radius-md); background: var(--color-background-danger); color: var(--color-text-danger); display: inline-block; line-height: 1.4; }
+.dp { margin: 10px 0; padding: 12px; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+.dp-t { font-size: 12px; font-weight: 500; margin-bottom: 8px; }
+.dp-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+.dp-card { flex: 1; min-width: 130px; padding: 8px 10px; border-radius: var(--border-radius-md); background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); }
+.dp-card-t { font-size: 11px; font-weight: 500; margin-bottom: 3px; }
+.dp-card-d { font-size: 10px; color: var(--color-text-secondary); line-height: 1.45; }
+.emoji-row { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+.emoji-card { padding: 8px 10px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); flex: 1; min-width: 100px; text-align: center; }
+.emoji-icon { font-size: 20px; margin-bottom: 4px; }
+.emoji-label { font-size: 10.5px; font-weight: 500; }
+.emoji-desc { font-size: 9.5px; color: var(--color-text-secondary); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+<div class="w">
+<div class="sys-title">Inkitt OS</div>
+<div class="sys-sub">The operating system I would build as CoS to replace Ali as the human router, so he only exercises judgment on things that genuinely require it.</div>
+
+<!-- DESIGN PRINCIPLES -->
+<div class="dp">
+<div class="dp-t">System design principles</div>
+<div class="dp-grid">
+<div class="dp-card">
+<div class="dp-card-t">Lossy at each level</div>
+<div class="dp-card-d">Every layer filters. ICs see all their tasks. Managers see team patterns. Ali sees red flags only. Information compresses as it moves up, never expands.</div>
+</div>
+<div class="dp-card">
+<div class="dp-card-t">Cost-effective performance</div>
+<div class="dp-card-d">Minimize expensive API calls. Use local processing and native tool intelligence where possible. Build 2 cuts Claude API costs to a flat 6 calls/day regardless of meeting volume.</div>
+</div>
+<div class="dp-card">
+<div class="dp-card-t">Fewer, familiar tools</div>
+<div class="dp-card-d">Everyone already uses Slack and Notion. I build on top of existing habits, not against them. No new apps for ICs to learn. Adoption by default.</div>
+</div>
+<div class="dp-card">
+<div class="dp-card-t">Minimize platform jumping</div>
+<div class="dp-card-d">ICs never leave Slack. Managers get dossiers in Slack. Ali gets his roll-up in Slack or his Office OS. Nobody opens Notion to update a task status.</div>
+</div>
+<div class="dp-card">
+<div class="dp-card-t">Proactive and reactive</div>
+<div class="dp-card-d">Proactive: morning to-do lists, end-of-day dossiers, pre-briefs before Ali's meetings. Reactive: post-meeting action pings immediately after every call, blocker escalations triggered by SLA breach.</div>
+</div>
+</div>
+</div>
+
+<div class="tabs">
+<button class="tab on" onclick="sw(0)">Build 1: Now<small>Notion Agent + Slack / First 60 days</small></button>
+<button class="tab" onclick="sw(1)">Build 2: Next<small>Quill + Chief AI / Month 3-6</small></button>
+</div>
+
+<!-- ==================== BUILD 1 ==================== -->
+<div class="pn on" id="p0">
+<div class="tog">
+<label><input type="checkbox" checked onchange="document.getElementById('b1c').style.display=this.checked?'block':'none'"> Ali's Office OS</label>
+<label><input type="checkbox" checked onchange="document.getElementById('b1r').style.display=this.checked?'block':'none'"> Failure modes</label>
+<label><input type="checkbox" checked onchange="document.getElementById('b1p').style.display=this.checked?'block':'none'"> Rollout</label>
+</div>
+
+<!-- Collection -->
+<div class="lw" style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)">
+<div class="ll" style="color:var(--color-text-secondary)"><span class="dot" style="background:var(--color-text-secondary)"></span>Collection: how everyone's meetings pool</div>
+<div class="st-d">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. No bot. Captures device audio on any platform.</div>
+<div class="pool">
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">Product</div>
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">Engineering</div>
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">Content</div>
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">GTM</div>
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">Data</div>
+<div class="pc" style="border-color:var(--color-border-info);color:var(--color-text-info)">BizOps</div>
+</div>
+<div class="fn">Granola shared folders pool by team + auto-push every note to my Notion workspace</div>
+</div>
+
+<!-- Transpose -->
+<div class="lw" style="background:var(--color-background-info);border:0.5px solid var(--color-border-info)">
+<div class="ll" style="color:var(--color-text-info)"><span class="dot" style="background:var(--color-text-info)"></span>Layer 1: Transpose<span class="badge" style="background:var(--color-background-primary);color:var(--color-text-info)">Claude's only job here</span></div>
+<div class="pipe">
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-info);flex:2">
+<div class="st-t" style="color:var(--color-text-info)">Granola notes to Notion structured rows</div>
+<div class="st-d">When a new meeting note lands in Notion, Claude extracts: commitments, owners, deadlines, team tags, dependencies, and OKR links. Writes each as a structured row in my Notion task database. Claude does not orchestrate, does not distribute. Transpose only.</div>
+<div class="st-tool" style="background:var(--color-background-info);color:var(--color-text-info)">Claude API to Notion</div>
+</div>
+</div>
+</div>
+
+<div class="fn">Notion Agent takes over from here: orchestration, distribution, and signal detection</div>
+
+<!-- Notion Agent -->
+<div class="lw" style="background:var(--color-background-warning);border:0.5px solid var(--color-border-warning)">
+<div class="ll" style="color:var(--color-text-warning)"><span class="dot" style="background:var(--color-text-warning)"></span>Layer 2: Orchestrate + distribute</div>
+<div class="pipe">
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-warning);flex:2">
+<div class="st-t" style="color:var(--color-text-warning)">My Notion Custom Agent</div>
+<div class="st-d">Configured with an instruction page encoding my CoS logic: how I tag teams, assign owners, what constitutes an escalation, my communication standards. Runs 24/7: tags, assigns, tracks blockers with 48hr SLA, flags OKR status.</div>
+<div class="st-tool" style="background:var(--color-background-warning);color:var(--color-text-warning)">Notion Custom Agent<span class="badge" style="background:var(--color-background-success);color:var(--color-text-success)">24/7</span></div>
+</div>
+<div class="ar">&gt;</div>
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-warning)">
+<div class="st-t" style="color:var(--color-text-warning)">My audit</div>
+<div class="st-d">I spot-check the agent's tagging, verify escalations. My role: auditor + strategist, not router.</div>
+</div>
+</div>
+<div class="outs" style="margin-top:6px">
+<div class="oc" style="max-width:150px"><div class="oc-t">Team Brain</div><div class="oc-d">Institutional knowledge that survives 150 to 400 scale</div></div>
+<div class="oc" style="max-width:150px"><div class="oc-t">OKR tracker</div><div class="oc-d">Auto-updated. Agent flags amber/red.</div></div>
+<div class="oc" style="max-width:170px"><div class="oc-t">Blocker registry</div><div class="oc-d">48hr SLA. Auto-escalates on miss.</div></div>
+</div>
+</div>
+
+<!-- POST-MEETING PING -->
+<div class="lb">
+<div class="lb-t">Post-meeting action ping (immediately after each call)</div>
+<div class="lb-s">
+<strong>Trigger:</strong> As soon as Claude finishes transposing a meeting's notes into Notion, my Notion Agent detects the new rows and immediately pings each teammate in Slack with the action items they were assigned on that call.<br>
+<strong>Format:</strong> Each action item is a separate Slack message: task description, deadline, dependencies, and the meeting it came from.<br>
+<strong>Teammate responds with one of three emoji reactions:</strong>
+</div>
+<div class="emoji-row">
+<div class="emoji-card">
+<div class="emoji-icon">&#x2705;</div>
+<div class="emoji-label">Done</div>
+<div class="emoji-desc">Task completed. Notion Agent marks status as "done" in Notion.</div>
+</div>
+<div class="emoji-card">
+<div class="emoji-icon">&#x274C;</div>
+<div class="emoji-label">Remove</div>
+<div class="emoji-desc">Not my action item or incorrectly assigned. Notion Agent deletes or flags for my review.</div>
+</div>
+<div class="emoji-card">
+<div class="emoji-icon">&#x2757;</div>
+<div class="emoji-label">Blocked</div>
+<div class="emoji-desc">I am blocked on this. Notion Agent updates status to "blocked" and adds to the blocker registry with a 48hr SLA.</div>
+</div>
+</div>
+<div style="font-size:10px;color:var(--color-text-secondary)">All three reactions are detected by Notion Agent's native Slack emoji triggers and auto-update the Notion database. No custom bot, no middleware. This is both proactive (ping right after the meeting) and reactive (teammate signals status in real time).</div>
+</div>
+
+<!-- MORNING TO-DO -->
+<div class="lb">
+<div class="lb-t">Morning to-do list (daily at start of day)</div>
+<div class="lb-s">
+<strong>Morning:</strong> My Notion Agent compiles all open tasks for each IC (from post-meeting pings and any carryover) and posts a consolidated daily to-do list to their Slack channel.<br>
+<strong>During the day:</strong> Same three emoji reactions: &#x2705; done, &#x274C; remove, &#x2757; blocked. All auto-sync to Notion.<br>
+<strong>End of day:</strong> Completion data feeds into the manager dossier snapshot.
+</div>
+<div style="font-size:10px;color:var(--color-text-secondary);margin-top:5px">Two touchpoints per day: immediate post-meeting pings (reactive) + morning consolidated list (proactive). ICs never leave Slack. Notion stays perfectly in sync.</div>
+</div>
+
+<div class="fn">Manager layer: Claude comes back for the visual dossier</div>
+
+<!-- Manager dossier -->
+<div class="lw" style="background:var(--color-background-success);border:0.5px solid var(--color-border-success)">
+<div class="ll" style="color:var(--color-text-success)"><span class="dot" style="background:var(--color-text-success)"></span>Layer 3: Manager dossier<span class="badge" style="background:var(--color-background-primary);color:var(--color-text-success)">Claude's second job</span></div>
+<div class="pipe">
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-success);flex:2">
+<div class="st-t" style="color:var(--color-text-success)">Visual team report</div>
+<div class="st-d">End of day, Claude reads Notion snapshot: team to-dos (done/open/blocked), linked OKRs per item, progress toward each OKR, unresolved blockers with age. Generates a visual doc managers can scan in 30 seconds.</div>
+<div class="st-tool" style="background:var(--color-background-success);color:var(--color-text-success)">Claude API to Slack</div>
+</div>
+</div>
+<div class="outs">
+<div class="oc"><div class="oc-t" style="color:var(--color-text-success)">ICs get</div><div class="oc-d">Post-meeting action pings + morning to-do list. React with emoji. Never leave Slack.</div></div>
+<div class="oc"><div class="oc-t" style="color:var(--color-text-success)">Managers get</div><div class="oc-d">Visual dossier: to-dos, done/open/blocked, OKR links, progress bars, blockers, dependencies</div></div>
+<div class="oc"><div class="oc-t" style="color:var(--color-text-success)">Ali gets</div><div class="oc-d">Executive roll-up: all 6 teams, red flags only, OKR progress, decision queue. Verified by me.</div></div>
+</div>
+</div>
+
+<!-- Ali's Office OS -->
+<div id="b1c">
+<div class="lw" style="background:var(--color-background-danger);border:0.5px solid var(--color-border-danger)">
+<div class="ll" style="color:var(--color-text-danger)"><span class="dot" style="background:var(--color-text-danger)"></span>Ali's Office OS (built manually in Build 1)</div>
+<div class="pipe">
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)"><div class="st-t" style="color:var(--color-text-danger)">Agent-drafted pre-brief</div><div class="st-d">Notion Agent pulls relationship data + past meetings, drafts 1-pager. I review and finalize.</div></div>
+<div class="ar">&gt;</div>
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)"><div class="st-t" style="color:var(--color-text-danger)">Ali's meeting</div><div class="st-d">Prepared, decides faster</div></div>
+<div class="ar">&gt;</div>
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)"><div class="st-t" style="color:var(--color-text-danger)">Action memo</div><div class="st-d">Decisions, owners, deadlines fed back to task registry and accountability loop</div></div>
+</div>
+</div>
+</div>
+
+<!-- Responsibilities -->
+<div class="note"><strong>Inkitt OS responsibility split (Build 1):</strong><br><strong>Claude</strong> (2 jobs): Transpose Granola to Notion rows. Generate visual manager dossier.<br><strong>Notion Agent</strong> (everything else): Tag, assign, track, flag, post-meeting pings, morning to-dos, detect emoji reactions (done/remove/blocked), update Notion, draft pre-briefs.<br><strong>Me:</strong> Audit, verify escalations, finalize Ali's Office OS, own the accountability loop.</div>
+
+<div id="b1r">
+<div class="sl">Failure modes I have designed against</div>
+<div class="outs">
+<div class="oc" style="background:var(--color-background-danger);border-color:var(--color-border-danger)"><div class="oc-t" style="color:var(--color-text-danger)">Compounding errors</div><div class="oc-d"><em>I audit everything before Ali sees it.</em></div></div>
+<div class="oc" style="background:var(--color-background-warning);border-color:var(--color-border-warning)"><div class="oc-t" style="color:var(--color-text-warning)">Alert fatigue</div><div class="oc-d"><em>Lossy layers. I curate ruthlessly.</em></div></div>
+<div class="oc" style="background:var(--color-background-warning);border-color:var(--color-border-warning)"><div class="oc-t" style="color:var(--color-text-warning)">Gaming</div><div class="oc-d"><em>Cross-reference multiple signals.</em></div></div>
+<div class="oc" style="background:var(--color-background-info);border-color:var(--color-border-info)"><div class="oc-t" style="color:var(--color-text-info)">Emoji adoption</div><div class="oc-d"><em>Three reactions are zero-friction. I demo it Week 3.</em></div></div>
+</div>
+</div>
+
+<div id="b1p">
+<div class="sl">My rollout</div>
+<div class="outs">
+<div class="oc"><div class="oc-t" style="color:var(--color-text-info)">Week 1 to 2: Manual discovery</div><div class="oc-d">Attend every standup. Prepare briefs and digests myself using different tools to build intuition on what information is most relevant for managers as I design the dossier dashboard. Build trust with every team lead. Map the real information topology.</div></div>
+<div class="oc"><div class="oc-t" style="color:var(--color-text-warning)">Week 3 to 4: Agent pilot</div><div class="oc-d">Notion Agent live with one team. Validate tagging, test post-meeting pings and emoji reactions, tune instruction page.</div></div>
+<div class="oc"><div class="oc-t" style="color:var(--color-text-success)">Week 5+: Full Inkitt OS</div><div class="oc-d">All 6 teams on the system. Emoji reactions live. Dossiers flowing. I am at the audit + Ali's Office OS layer.</div></div>
+</div>
+</div>
+
+<div class="ts"><span style="font-weight:500">Build 1 stack:</span><span class="tp">Granola</span><span class="tp">Claude API</span><span class="tp">Notion + Custom Agent</span><span class="tp">Slack</span></div>
+</div>
+
+<!-- ==================== BUILD 2 ==================== -->
+<div class="pn" id="p1">
+
+<!-- WHY BUILD 2 -->
+<div class="cost">
+<div class="cost-t">Why pursue Build 2?</div>
+<div class="cost-d">In Build 1, Claude makes an API call for every meeting note that lands in Notion (transpose) plus every end-of-day dossier (generation). Across 6 teams with multiple daily meetings each, that is dozens of Claude API calls per day for transposition alone. In Build 2, Quill handles extraction locally on-device. Claude's transpose calls drop to zero. The only remaining API spend is dossier generation: 6 team reports + 1 exec roll-up = 7 calls per day. As Inkitt scales from 150 to 400 people with proportionally more meetings, Build 1's API costs grow linearly with meeting volume. Build 2's costs stay flat. On top of cost savings: Quill adds local-first privacy for sensitive CEO meetings, and Chief AI gives Ali a purpose-built Office OS instead of one I have to build and maintain manually.</div>
+</div>
+
+<!-- Quill -->
+<div class="lw" style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)">
+<div class="ll" style="color:var(--color-text-secondary)"><span class="dot" style="background:var(--color-text-secondary)"></span>Collection + extraction<span class="badge" style="background:var(--color-background-primary);color:var(--color-text-secondary)">Quill replaces Granola + Claude transpose</span></div>
+<div class="st-d">Quill on every device. Records, transcribes, AND extracts structured commitments, owners, and deadlines in one local step. Writes directly to my Notion workspace via MCP. All processing on-device. Privacy-first for CEO-level meetings. Claude's transpose job is eliminated entirely.</div>
+<div class="st-tool" style="background:var(--color-background-info);color:var(--color-text-info);margin-top:6px">Quill (Quilliam)<span class="badge" style="background:var(--color-background-success);color:var(--color-text-success)">Local-first</span><span class="badge" style="background:var(--color-background-primary);color:var(--color-text-info)">All-in-one</span></div>
+<div class="lim">Current limitation: Quill is desktop-only (Mac + Windows). No mobile app yet. Phone calls and in-person meetings without a laptop need a fallback to Granola's iPhone app or manual capture.</div>
+</div>
+
+<div class="fn">Quill writes to Notion via MCP. No API glue, no Claude call.</div>
+
+<!-- Notion Agent -->
+<div class="lw" style="background:var(--color-background-warning);border:0.5px solid var(--color-border-warning)">
+<div class="ll" style="color:var(--color-text-warning)"><span class="dot" style="background:var(--color-text-warning)"></span>Orchestrate + distribute (same foundation as Build 1)</div>
+<div class="st-d">Same Notion Agent, same instruction page, same 24/7 orchestration. Post-meeting action pings, morning to-do lists, three-emoji reaction system. Receives richer structured input from Quill's MCP output vs. Claude's parsing in Build 1.</div>
+<div class="st-tool" style="background:var(--color-background-warning);color:var(--color-text-warning);margin-top:5px">Notion Custom Agent<span class="badge" style="background:var(--color-background-success);color:var(--color-text-success)">24/7</span></div>
+</div>
+
+<div class="lb">
+<div class="lb-t">Same two-touchpoint system as Build 1</div>
+<div class="lb-s"><strong>After each meeting:</strong> Notion Agent pings teammates with action items. <strong>Each morning:</strong> Consolidated to-do list. <strong>Reactions:</strong> &#x2705; done, &#x274C; remove, &#x2757; blocked. All auto-sync to Notion.</div>
+</div>
+
+<div class="fn">Claude's only remaining job: the visual manager dossier</div>
+
+<!-- Manager dossier -->
+<div class="lw" style="background:var(--color-background-success);border:0.5px solid var(--color-border-success)">
+<div class="ll" style="color:var(--color-text-success)"><span class="dot" style="background:var(--color-text-success)"></span>Manager dossier<span class="badge" style="background:var(--color-background-primary);color:var(--color-text-success)">Claude's only job in Build 2</span></div>
+<div class="st-d">Same as Build 1. Claude reads Notion snapshot, generates visual team reports with OKR progress, sends to managers and my exec roll-up via Slack.</div>
+<div class="st-tool" style="background:var(--color-background-success);color:var(--color-text-success);margin-top:5px">Claude API to Slack</div>
+</div>
+
+<!-- Ali's Office OS -->
+<div class="lw" style="background:var(--color-background-danger);border:0.5px solid var(--color-border-danger)">
+<div class="ll" style="color:var(--color-text-danger)"><span class="dot" style="background:var(--color-text-danger)"></span>Ali's Office OS<span class="badge" style="background:var(--color-background-primary);color:var(--color-text-danger)">Replaces manual build from Build 1</span></div>
+<div class="pipe">
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)">
+<div class="st-t" style="color:var(--color-text-danger)">Scheduling + pre-briefs</div>
+<div class="st-d">Auto-generated 1-pager: who Ali is meeting, relationship history, context, decision needed</div>
+</div>
+<div class="ar">&gt;</div>
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)">
+<div class="st-t" style="color:var(--color-text-danger)">Relationship intelligence</div>
+<div class="st-d">Institutional memory: investors, talent, partners, board</div>
+</div>
+<div class="ar">&gt;</div>
+<div class="st" style="background:var(--color-background-primary);border:0.5px solid var(--color-border-danger)">
+<div class="st-t" style="color:var(--color-text-danger)">Priority dashboard</div>
+<div class="st-d">AI goal tracking. Ali sees what matters without asking.</div>
+</div>
+</div>
+<div style="font-size:10px;color:var(--color-text-danger);margin-top:5px;padding-left:2px">Chief AI is purpose-built for Ali's Office OS. Created by ex-White House and Congress staff for exactly this use case.</div>
+<div class="st-tool" style="background:var(--color-background-danger);color:var(--color-text-danger);margin-top:5px">Chief AI (getchief.ai)</div>
+</div>
+
+<!-- Architecture -->
+<div class="note"><strong>Inkitt OS Build 2: each tool owns one layer:</strong><br><strong>Quill</strong> = capture + extract (local, replaces Granola + Claude transpose)<br><strong>Notion Agent</strong> = orchestrate + distribute + emoji reactions (same as Build 1)<br><strong>Claude</strong> = visual manager dossier only (1 job, down from 2, lower API cost)<br><strong>Chief AI</strong> = Ali's Office OS<br><br>If Quill fails, I fall back to Granola + Claude transpose (Build 1).<br>If Chief AI fails, I revert to agent-drafted pre-briefs (Build 1).<br>The foundation does not change.</div>
+
+<!-- Relationships -->
+<div class="rel">
+<div class="rel-t">Steps I am already taking to bring these tools in-house</div>
+<div class="rel-d">
+<strong>Quill:</strong> This is the tool I mentioned on our last call that already does a lot of what Inkitt OS needs. The co-founder and COO, Yacob Berhane, is a friend. I have been giving him and the team product feedback as they have developed Quilliam. I am currently one of their beta testers and an ambassador for the platform. I was giving Yacob feedback on the MCP integration earlier this week. I have direct founder access to shape how this tool evolves for our use case.
+<br><br>
+<strong>Chief AI:</strong> I know the founder, Shannon, through the GSB network. She is an alum who has come to speak in class. I have requested a demo and I am currently demoing Chief AI alongside Quill. I am evaluating both tools in parallel so that by the time I migrate from Build 1 to Build 2, I have already validated the integrations and have a direct line to both founding teams if we need customization.
+</div>
+</div>
+
+<div class="sl">Risks specific to Build 2</div>
+<div class="outs">
+<div class="oc" style="background:var(--color-background-danger);border-color:var(--color-border-danger)"><div class="oc-t" style="color:var(--color-text-danger)">Early-stage tools</div><div class="oc-d">Quill: seed stage. Chief AI: early. <em>I have direct founder relationships with both. I am shaping the product, not passively adopting.</em></div></div>
+<div class="oc" style="background:var(--color-background-warning);border-color:var(--color-border-warning)"><div class="oc-t" style="color:var(--color-text-warning)">Quill desktop-only</div><div class="oc-d">No mobile app. Phone calls need a fallback. <em>Granola iPhone app covers the gap until Quill ships mobile.</em></div></div>
+<div class="oc" style="background:var(--color-background-info);border-color:var(--color-border-info)"><div class="oc-t" style="color:var(--color-text-info)">Ali adoption</div><div class="oc-d">Chief AI requires Ali to use a new interface. <em>Only introduce after Build 1 trust is established.</em></div></div>
+</div>
+
+<div class="ts"><span style="font-weight:500">Build 2 stack:</span><span class="tp">Quill</span><span class="tp">Notion + Agent</span><span class="tp">Claude API</span><span class="tp">Slack</span><span class="tp">Chief AI</span></div>
+</div>
+
+<!-- ==================== COMPARISON ==================== -->
+<div class="cmp">
+<div style="font-size:12px;font-weight:500;margin-bottom:8px">Inkitt OS: Build 1 vs. Build 2</div>
+<table>
+<tr style="border-bottom:1px solid var(--color-border-secondary)">
+<td class="hd"></td><td class="hd" style="color:var(--color-text-warning)">Build 1: Now</td><td class="hd" style="color:var(--color-text-success)">Build 2: Next</td>
+</tr>
+<tr><td class="hd">Capture</td><td>Granola (cloud)</td><td>Quill (local-first, desktop-only)</td></tr>
+<tr><td class="hd">Extraction</td><td>Claude transposes to Notion</td><td>Quill extracts natively via MCP</td></tr>
+<tr><td class="hd">Orchestration</td><td>Notion Agent</td><td>Notion Agent (same)</td></tr>
+<tr><td class="hd">IC experience</td><td>Post-meeting pings + morning list + 3 emoji reactions</td><td>Same</td></tr>
+<tr><td class="hd">Manager experience</td><td>Claude visual dossier</td><td>Claude visual dossier (same)</td></tr>
+<tr><td class="hd">Ali's Office OS</td><td>Agent-drafted + my review</td><td>Chief AI (purpose-built)</td></tr>
+<tr><td class="hd">Claude's jobs</td><td>2 (transpose + dossier)</td><td>1 (dossier only)</td></tr>
+<tr><td class="hd">Claude API cost</td><td>Scales with meeting volume</td><td>Flat (7 calls/day)</td></tr>
+<tr><td class="hd">Privacy</td><td>Cloud-dependent</td><td>Local-first (Quill)</td></tr>
+<tr><td class="hd">My founder access</td><td></td><td>Beta tester (Quill/Yacob) + Demoing (Chief AI/Shannon)</td></tr>
+<tr><td class="hd">Tools</td><td>4</td><td>5 (each purpose-built)</td></tr>
+<tr><td class="hd">My role</td><td>Auditor + strategist</td><td>Architect</td></tr>
+<tr><td class="hd">Timeline</td><td>First 60 days</td><td>Month 3 to 6</td></tr>
+</table>
+</div>
+
+<div class="vrc">
+<strong>Proof point:</strong> Vercel built a Notion Custom Agent that grades and rewrites drafts intended for the CEO, using their Chief of Staff's guidance on how to communicate with them. This is my exact system: a CoS encoding their judgment into an autonomous agent, already working in production at a scaling tech company.
+</div>
+
+<div style="margin-top:10px;font-size:11px;color:var(--color-text-tertiary);line-height:1.6;padding:0 2px">
+<strong>My interview line:</strong> "I am calling this Inkitt OS. Build 1 deploys in my first 60 days: Granola captures meetings across all 6 teams, Claude transposes to Notion, and my Notion Agent handles everything else. Right after every meeting, it pings each teammate in Slack with their action items. They react with a checkmark for done, an X to remove, or an exclamation mark if they are blocked, and Notion updates in real time. Every morning they get a consolidated to-do list. Managers get a visual dossier with OKR progress every evening. For Ali's Office OS, I start with agent-drafted pre-briefs that I review. Build 2 evolves at month 3 to 6: Quill replaces Granola with local-first capture, Chief AI gives Ali a purpose-built Office OS, and Claude API costs drop because it only generates dossiers instead of processing every transcript. These are not hypothetical. I am beta-testing Quill with the co-founder Yacob Berhane, who is a friend, and I am demoing Chief AI with the founder Shannon, who is a GSB alum. And Vercel's Chief of Staff already runs a version of this in production."
+</div>
+</div>
+<script>function sw(n){document.querySelectorAll('.pn').forEach((p,i)=>p.classList.toggle('on',i===n));document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===n))}</script>
+</body>
+</html>
