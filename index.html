@@ -16,7 +16,7 @@
   --bri: #1e3a5f; --brw: #78350f; --brs: #14532d; --brd: #7f1d1d;
   --r: 8px; --rl: 12px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;scroll-margin-top:60px}
 body{font-family:var(--font);background:#0a0a0a;color:var(--t1);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:var(--info);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
 .page{max-width:820px;margin:0 auto;padding:32px 20px 80px}
@@ -173,6 +173,16 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 .mode-toggle:hover{border-color:rgba(251,191,36,.6);color:#fcd34d;background:linear-gradient(135deg,rgba(251,191,36,.25) 0%,rgba(217,150,20,.18) 100%);box-shadow:0 4px 20px rgba(251,191,36,.18),inset 0 1px 0 rgba(251,191,36,.3)}
 .mode-toggle svg{width:14px;height:14px}
 
+/* SIDE NAV */
+.side-nav{position:fixed;top:50%;left:16px;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:2px;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.06);max-height:70vh;overflow-y:auto}
+.side-nav::-webkit-scrollbar{width:0}
+.side-nav a{display:block;padding:5px 10px;font-size:9.5px;font-weight:500;color:var(--t3);text-decoration:none;border-radius:6px;transition:all .2s;white-space:nowrap;letter-spacing:.2px;border-left:2px solid transparent}
+.side-nav a:hover{color:var(--t1);background:rgba(255,255,255,.06)}
+.side-nav a.active{color:var(--t1);background:rgba(255,255,255,.08);border-left-color:var(--info)}
+.side-nav .nav-group{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);opacity:.5;padding:8px 10px 3px;pointer-events:none}
+.side-nav .nav-group:first-child{padding-top:2px}
+@media(max-width:1100px){.side-nav{display:none}}
+
 /* DESIGN PRINCIPLES */
 .principles{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .prin{flex:1;min-width:140px;padding:10px 12px;border-radius:var(--r);background:rgba(255,255,255,.03);border:0.5px solid var(--br2)}
@@ -236,6 +246,31 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 </head>
 <body>
 
+<!-- SIDE NAV -->
+<nav class="side-nav" id="sideNav">
+  <div class="nav-group">Overview</div>
+  <a href="#nav-overview">Inkitt OS</a>
+  <a href="#nav-principles">Design Principles</a>
+  <div class="nav-group" id="navB1Label">Build 1</div>
+  <a href="#nav-l0" class="nav-b1">L0 Collection</a>
+  <a href="#nav-l1" class="nav-b1">L1 Transpose</a>
+  <a href="#nav-l2" class="nav-b1">L2 Tracking</a>
+  <a href="#nav-l3" class="nav-b1">L3 Dossier</a>
+  <a href="#nav-l4" class="nav-b1">L4 Org Intelligence</a>
+  <a href="#nav-ceo" class="nav-b1">CEO's Office</a>
+  <a href="#nav-responsibility" class="nav-b1">Responsibilities</a>
+  <a href="#nav-failures" class="nav-b1">Failure Modes</a>
+  <a href="#nav-rollout" class="nav-b1">90-Day Rollout</a>
+  <div class="nav-group" id="navB2Label" style="display:none">Build 2</div>
+  <a href="#nav-b2-l01" class="nav-b2" style="display:none">L0+1 Quill</a>
+  <a href="#nav-b2-l2" class="nav-b2" style="display:none">L2 Tracking</a>
+  <a href="#nav-b2-l34" class="nav-b2" style="display:none">L3+4 Dossier + OKR</a>
+  <a href="#nav-b2-ceo" class="nav-b2" style="display:none">CEO's Office OS</a>
+  <a href="#nav-steps" class="nav-b2" style="display:none">Steps Taken</a>
+  <div class="nav-group">Compare</div>
+  <a href="#nav-comparison">Build 1 vs 2</a>
+</nav>
+
 <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 <span id="modeLabel">Static View</span>
@@ -254,7 +289,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 <div class="page">
 
 <!-- HERO -->
-<div class="hero rv">
+<div class="hero rv" id="nav-overview">
   <h1>Inkitt OS</h1>
   <div style="font-size:13px;color:var(--t2);margin-bottom:8px;font-style:italic;font-family:'Lora',serif">by <a href="https://www.heyarinze.com" target="_blank" style="color:var(--t1);text-decoration:underline;text-underline-offset:2px">Arinze Obiezue</a></div>
   <p>The operating system I would build as Chief of Staff to replace Ali as the human router, so he only exercises judgment on things that genuinely require it.</p>
@@ -265,7 +300,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 </div>
 
 <!-- DESIGN PRINCIPLES -->
-<div class="rv">
+<div class="rv" id="nav-principles">
   <div class="sec-label">Inkitt OS System Design Principles</div>
   <div class="principles">
     <div class="fl prin"><div class="prin-t">Lossy at each level</div><div class="prin-d">Information compresses upward, never expands.</div></div>
@@ -312,7 +347,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 </div>
 
 <!-- L0 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-l0">
   <div class="layer-num" style="color:var(--t2)"><span class="dot" style="color:var(--t2)">&#9733;</span>LAYER 0</div>
   <div class="layer-title">Meetings &#8594; Transcripts</div>
   <div class="layer-brief">Granola on every device. No bot. Device audio, any platform, all 6 teams.</div>
@@ -328,7 +363,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 <div class="flow-down rv">&#8595;</div>
 
 <!-- L1 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-l1">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 mins</div>
   <div class="layer-num" style="color:var(--info)"><span class="dot" style="color:var(--info)">&#9733;</span>LAYER 1 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 1 of 3</span></div>
   <div class="layer-title">Transcripts &#8594; Commitments</div>
@@ -470,7 +505,7 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- L2 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-l2">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
   <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2</div>
   <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
@@ -525,7 +560,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- L3 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-l3">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 hour</div>
   <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude job 2 of 3</span></div>
   <div class="layer-title">Blocker/OKR Tracking &#8594; Escalation</div>
@@ -546,7 +581,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- L4: FULL TEXT RESTORED, CoS voice -->
-<div class="rv layer">
+<div class="rv layer" id="nav-l4">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
   <div class="layer-num" style="color:var(--t1)"><span class="dot" style="color:var(--t1)">&#9733;</span>LAYER 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 3 of 3</span> <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Unlocks Week 7+</span></div>
   <div class="layer-title">Escalation &#8594; Org Intelligence</div>
@@ -586,7 +621,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- CEO's Office — CoS voice -->
-<div class="rv layer">
+<div class="rv layer" id="nav-ceo">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 hours</div>
   <div class="layer-num" style="color:var(--err)"><span class="dot" style="color:var(--err)">&#9733;</span>CEO'S OFFICE OS <span class="badge" style="background:rgba(255,255,255,.05);color:var(--err)">Built manually in Build 1</span></div>
   <div class="layer-title">CEO's Office</div>
@@ -615,7 +650,7 @@ Return results in structured JSON.</pre>
 <div class="div rv"></div>
 
 <!-- RESPONSIBILITY SPLIT — DISTINCT ROWS -->
-<div class="rv">
+<div class="rv" id="nav-responsibility">
   <div class="sec-label">Responsibility split (Build 1)</div>
   <div class="resp">
     <div class="resp-row">
@@ -634,7 +669,7 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- FAILURE MODES -->
-<div class="rv">
+<div class="rv" id="nav-failures">
   <div class="sec-label">Failure modes designed against</div>
   <div class="outputs">
     <div class="fl out"><div class="out-t" style="color:var(--err)">Compounding errors</div><div class="out-d"><em>CoS audits everything before Ali sees it.</em></div></div>
@@ -649,7 +684,7 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- 90-DAY ROLLOUT — 12 WEEKS -->
-<div class="rv">
+<div class="rv" id="nav-rollout">
   <div class="sec-label">90-Day Rollout (12 weeks)</div>
   <div class="outputs" style="flex-direction:column;gap:8px">
     <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--info)">Weeks 1&#8211;3: Organizational Map</div><div class="out-d">Build the organizational map. Attend every standup across all 6 teams. Understand the real information flow — where decisions actually get made, where handoffs break, where redundancies live. Document gaps between how teams think information moves and how it actually moves. This is the foundation the entire system is designed against.</div></div>
@@ -698,7 +733,7 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- L0+L1: Quill -->
-<div class="rv layer">
+<div class="rv layer" id="nav-b2-l01">
   <div class="layer-num" style="color:var(--t2)"><span class="dot" style="color:var(--t2)">&#9733;</span>LAYER 0 + 1 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--t2)"><a href="https://quillmeetings.com/">Quill</a> replaces Granola + Claude transpose</span></div>
   <div class="layer-title">Meetings &#8594; Transcripts &#8594; Commitments</div>
   <div class="layer-brief"><a href="https://quillmeetings.com/">Quill</a> on every device. Records, transcribes, AND extracts locally. Writes to Notion via MCP. Claude's transpose job eliminated. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo</a>.</div>
@@ -719,7 +754,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- L2 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-b2-l2">
   <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Same as Build 1</span></div>
   <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
   <div class="layer-brief">Same Notion Agent, same 24/7 orchestration, same emoji reactions. Richer input from <a href="https://quillmeetings.com/">Quill's</a> MCP output.</div>
@@ -739,7 +774,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- L3+L4 -->
-<div class="rv layer">
+<div class="rv layer" id="nav-b2-l34">
   <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 + 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude's only jobs in Build 2</span></div>
   <div class="layer-title">Escalation + Org Intelligence</div>
   <div class="layer-brief">Same dossier + OKR Report. But cheaper: Claude only reports, doesn't extract. 2 jobs down from 3.</div>
@@ -754,7 +789,7 @@ Return results in structured JSON.</pre>
 <div class="flow-down rv">&#8595;</div>
 
 <!-- CEO's Office OS -->
-<div class="rv layer">
+<div class="rv layer" id="nav-b2-ceo">
   <div class="layer-num" style="color:var(--err)"><span class="dot" style="color:var(--err)">&#9733;</span>CEO'S OFFICE OS <span class="badge" style="background:rgba(255,255,255,.05);color:var(--err)">Replaces manual build</span></div>
   <div class="layer-title"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a> &#8212; Purpose-Built</div>
   <div class="flow">
@@ -788,7 +823,7 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- STEPS I'M TAKING — PLAIN TEXT -->
-<div class="rv" style="margin:16px 0">
+<div class="rv" id="nav-steps" style="margin:16px 0">
   <div style="display:inline-block;padding:5px 12px;border-radius:6px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--warn);margin-bottom:10px">&#9733; Steps I am already taking to bring these tools in-house</div>
   <div style="padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03);font-size:11px;line-height:1.7;color:var(--t2)">
     <strong style="color:var(--t1)"><a href="https://quillmeetings.com/">Quill</a>:</strong> This is the tool I mentioned on our last call that already does a lot of what Inkitt OS needs. The co-founder and COO, Yacob Berhane, is a friend. I have been giving him and the team product feedback as they have developed Quilliam. I am currently one of their beta testers and an ambassador for the platform, and I am trialing a free Pro version that Yacob gave me. I was giving Yacob feedback on the MCP integration earlier this week. I have direct founder access to shape how this tool evolves for our use case. He told me they're shipping mobile as we speak. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo of Quill</a>.<br><br>
@@ -811,7 +846,7 @@ Return results in structured JSON.</pre>
 
 <!-- COMPARISON -->
 <div class="div rv"></div>
-<div class="rv">
+<div class="rv" id="nav-comparison">
 <div class="cmp">
 <div style="font-size:13px;font-weight:600;margin-bottom:10px">Build 1 vs. Build 2</div>
 <table>
@@ -851,6 +886,24 @@ function swBuild(n){
   document.querySelectorAll('.build').forEach(function(b,i){b.classList.toggle('on',i===n)});
   document.querySelectorAll('.sw-btn').forEach(function(t,i){t.classList.toggle('on',i===n)});
   setTimeout(function(){initReveal()},50);
+  updateNavForBuild(n);
+}
+function updateNavForBuild(n){
+  var b1=document.querySelectorAll('.nav-b1');
+  var b2=document.querySelectorAll('.nav-b2');
+  var l1=document.getElementById('navB1Label');
+  var l2=document.getElementById('navB2Label');
+  if(n===0){
+    b1.forEach(function(a){a.style.display=''});
+    l1.style.display='';
+    b2.forEach(function(a){a.style.display='none'});
+    l2.style.display='none';
+  }else{
+    b1.forEach(function(a){a.style.display='none'});
+    l1.style.display='none';
+    b2.forEach(function(a){a.style.display=''});
+    l2.style.display='';
+  }
 }
 
 function toggleMode(){
@@ -1001,6 +1054,42 @@ function openWorkflow(){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){closeWorkflow();document.getElementById('wbOverlay').classList.add('hidden')}
 });
+
+/* Side nav: active section tracking */
+(function(){
+  var navLinks=document.querySelectorAll('.side-nav a');
+  var sections=[];
+  navLinks.forEach(function(link){
+    var id=link.getAttribute('href').slice(1);
+    var el=document.getElementById(id);
+    if(el) sections.push({id:id,el:el,link:link});
+  });
+  navLinks.forEach(function(link){
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').slice(1);
+      var target=document.getElementById(id);
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        var scrollY=window.scrollY+120;
+        var active=null;
+        sections.forEach(function(s){
+          if(s.link.style.display==='none') return;
+          if(s.el.offsetTop<=scrollY) active=s;
+        });
+        navLinks.forEach(function(l){l.classList.remove('active')});
+        if(active) active.link.classList.add('active');
+        ticking=false;
+      });
+      ticking=true;
+    }
+  });
+})();
 </script>
 </body>
 </html>
