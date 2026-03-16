@@ -281,7 +281,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 <div class="wb-panel" onclick="event.stopPropagation()">
 <button class="wb-close" onclick="document.getElementById('wbOverlay').classList.add('hidden')">&times;</button>
 <div class="wb-title">Where this started</div>
-<div class="wb-sub">Original whiteboard session — mapping inputs, tools, risks, teams, and the information flow before any system was built.</div>
+<div class="wb-sub">Original whiteboard session mapping inputs, tools, risks, teams, and the information flow before any system was built.</div>
 <img src="whiteboard.jpg" alt="Original whiteboard session" class="wb-img">
 </div>
 </div>
@@ -332,7 +332,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
       <div class="wf-card-title">Click to See Workflow</div>
     </div>
-    <div class="wf-card-sub">End-to-end visualization of how information flows from meetings to decisions. Each stage shows its input and output.</div>
+    <div class="wf-card-sub">Full visualization of how information flows from meetings to decisions. Each stage shows its input and output.</div>
     <div class="wf-example">
       <span class="wf-ex-step" style="color:var(--t2)">Content standup</span><span class="wf-ex-arr">&#8594;</span>
       <span class="wf-ex-step">Promise made</span><span class="wf-ex-arr">&#8594;</span>
@@ -357,7 +357,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. Granola shared folders pool by team + auto-push every note to the CoS's Notion workspace. No bot joins calls. Captures device audio on any platform (Zoom, Meet, Teams, phone).</div>
+    <div class="logic-tip">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. Shared folders pool by team and auto-push every note to the CoS's Notion workspace. No bot joins calls. Captures device audio on any platform (Zoom, Meet, Teams, phone).</div>
   </div>
 </div>
 <div class="flow-down rv">&#8595;</div>
@@ -382,7 +382,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts: commitments, owners, deadlines, team tags, dependencies, and OKR links. Writes each as a structured row in the Notion task database. <strong>Claude does not orchestrate, does not distribute. Transpose only.</strong></div>
+    <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts commitments, owners, deadlines, team tags, dependencies, and OKR links. Each one becomes a structured row in the Notion task database. <strong>Claude does not orchestrate or distribute. Transpose only.</strong></div>
   </div>
   <button class="prompt-btn" onclick="document.getElementById('promptOverlay').classList.remove('hidden')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>See the actual prompt</button>
 </div>
@@ -534,13 +534,13 @@ Return results in structured JSON.</pre>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Configured with an instruction page encoding the CoS logic: how to tag teams, assign owners, what constitutes an escalation, communication standards. The CoS spot-checks tagging, verifies escalations. <strong>CoS role: auditor + strategist, not router.</strong></div>
+    <div class="logic-tip">Configured with an instruction page that encodes the CoS's logic: how to tag teams, assign owners, what counts as an escalation, and communication standards. The CoS spot-checks tagging and verifies escalations. <strong>CoS role: auditor + strategist, not router.</strong></div>
   </div>
 </div>
 
 <!-- VERCEL PROOF POINT — after Layer 2 -->
 <div class="rv proof">
-  <strong>Proof point:</strong> Vercel built a Notion Custom Agent that grades and rewrites drafts intended for the CEO, using their Chief of Staff's guidance on how to communicate with them. This is the exact same system: a CoS encoding their judgment into an autonomous agent, already working in production at a scaling tech company.
+  <strong>Proof point:</strong> Vercel built a Notion Custom Agent that grades and rewrites drafts intended for the CEO, using their Chief of Staff's guidance on tone and communication. Same concept: a CoS encoding their judgment into an autonomous agent, already working in production at a scaling tech company.
 </div>
 
 <!-- IC Touchpoints -->
@@ -554,7 +554,7 @@ Return results in structured JSON.</pre>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip"><strong>Post-meeting ping:</strong> As soon as Claude finishes transposing, Notion Agent detects new rows and pings each teammate in Slack with action items. Each item is a separate message: task, deadline, dependencies, which meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks for each IC and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> All detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: immediate post-meeting pings (reactive) + morning list (proactive). ICs never leave Slack.</div>
+    <div class="logic-tip"><strong>Post-meeting ping:</strong> Once Claude finishes transposing, Notion Agent detects the new rows and pings each teammate in Slack with their action items. Each item is a separate message with the task, deadline, dependencies, and source meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks per IC and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> Detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: post-meeting pings (reactive) and a morning list (proactive). ICs never leave Slack.</div>
   </div>
 </div>
 <div class="flow-down rv">&#8595;</div>
@@ -585,37 +585,37 @@ Return results in structured JSON.</pre>
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
   <div class="layer-num" style="color:var(--t1)"><span class="dot" style="color:var(--t1)">&#9733;</span>LAYER 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 3 of 3</span> <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Unlocks Week 7+</span></div>
   <div class="layer-title">Escalation &#8594; Org Intelligence</div>
-  <div class="layer-brief">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, every completion timestamp, every blocker duration writes to Notion automatically. Over weeks and months, that is a rich dataset of organizational performance. The Notion Agent runs a weekly and monthly pattern scan, then Claude generates a narrative OKR Report.</div>
+  <div class="layer-brief">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, completion timestamp, and blocker duration writes to Notion automatically. Over weeks, that builds into a rich dataset of organizational performance. The Notion Agent runs weekly and monthly pattern scans, then Claude generates a narrative OKR Report.</div>
   <div class="flow">
     <div class="fl node">
       <div class="node-t">Notion Agent</div>
-      <div class="node-d">Weekly/monthly trigger. Scans full task database for recurring patterns across teams, individuals, and OKRs.</div>
+      <div class="node-d">Weekly and monthly trigger. Scans the full task database for recurring patterns across teams, individuals, and OKRs.</div>
       <div class="node-tool">Pattern scan</div>
     </div>
     <div class="arr">&#8594;</div>
     <div class="fl node">
       <div class="node-t" style="color:var(--info)">Claude API</div>
-      <div class="node-d">Reads pattern findings, generates narrative visual report with trend lines, highlights, and recommendations.</div>
+      <div class="node-d">Reads pattern findings and generates a visual report with trend lines, highlights, and recommendations.</div>
       <div class="node-tool">OKR Report</div>
     </div>
   </div>
   <div class="sec-label" style="margin-top:10px">What the Org Intelligence Report surfaces</div>
   <div class="insights">
-    <div class="fl ins"><div class="ins-t">Chronic blockers</div><div class="ins-d">Themes that appear in the blocker registry repeatedly across teams and sprints.</div></div>
-    <div class="fl ins"><div class="ins-t">Completion velocity</div><div class="ins-d">Average time from assignment to done across all 6 teams. Trends over time.</div></div>
-    <div class="fl ins"><div class="ins-t">Late completion patterns</div><div class="ins-d">Individuals closing after deadline. Sensitive: manager-only, never in exec roll-up.</div></div>
-    <div class="fl ins"><div class="ins-t">Dependency bottlenecks</div><div class="ins-d">Which team-to-team handoffs create the most delays.</div></div>
-    <div class="fl ins"><div class="ins-t">OKR drift</div><div class="ins-d">Team completing tasks but OKR flat. Busy but not effective.</div></div>
-    <div class="fl ins"><div class="ins-t">Meeting&#8594;action conversion</div><div class="ins-d">What % of meeting commitments get completed? Culture or management signal.</div></div>
+    <div class="fl ins"><div class="ins-t">Chronic blockers</div><div class="ins-d">Themes that show up repeatedly in the blocker registry across teams and sprints.</div></div>
+    <div class="fl ins"><div class="ins-t">Completion velocity</div><div class="ins-d">Average time from assignment to completion across all 6 teams, tracked over time.</div></div>
+    <div class="fl ins"><div class="ins-t">Late completion patterns</div><div class="ins-d">Individuals closing tasks after deadline. Sensitive: visible to managers only, never in the exec roll-up.</div></div>
+    <div class="fl ins"><div class="ins-t">Dependency bottlenecks</div><div class="ins-d">Which team-to-team handoffs consistently create the most delays.</div></div>
+    <div class="fl ins"><div class="ins-t">OKR drift</div><div class="ins-d">A team completing tasks but OKR progress is flat. Busy, but not moving the needle.</div></div>
+    <div class="fl ins"><div class="ins-t">Meeting&#8594;action conversion</div><div class="ins-d">What percentage of meeting commitments actually get completed. A signal for culture and management quality.</div></div>
   </div>
   <div class="outputs" style="margin-top:10px">
     <div class="fl out"><div class="out-t">Team leads</div><div class="out-d">Weekly: velocity, late completions, blocker patterns, OKR trends. Individual-level data.</div></div>
     <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Monthly: org-wide patterns, cross-team bottlenecks, OKR drift, conversion rate. Structural only.</div></div>
-    <div class="fl out"><div class="out-t">CoS</div><div class="out-d">Full view. The CoS uses this to identify the 1 to 2 zero-to-one strategic initiatives.</div></div>
+    <div class="fl out"><div class="out-t">CoS</div><div class="out-d">Full view. The CoS uses this to identify 1-2 zero-to-one strategic initiatives worth pursuing.</div></div>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Unlocks at Week 7 from 6+ weeks of accumulated data. Data is collected from day one through emoji reactions — no additional effort required. Every &#x2705;, &#x274C;, and &#x2757; reaction writes a timestamp and status to Notion. The OKR layer simply reads what already exists. The CoS uses this to shift from operational auditor to strategic architect: identifying the structural issues that no single team can see from their vantage point.</div>
+    <div class="logic-tip">Unlocks at Week 7 from 6+ weeks of accumulated data. Data collection starts from day one through emoji reactions, with no additional effort required. Every &#x2705;, &#x274C;, and &#x2757; reaction writes a timestamp and status to Notion. The OKR layer simply reads what already exists. This is where the CoS shifts from operational auditor to strategic architect, identifying structural issues that no single team can see from their vantage point.</div>
   </div>
 </div>
 <div class="flow-down rv">&#8595;</div>
@@ -643,7 +643,7 @@ Return results in structured JSON.</pre>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn" style="border-color:rgba(248,113,113,.2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Notion Agent pulls relationship data + past meetings, drafts a 1-pager pre-brief. The CoS reviews and finalizes before Ali's meeting. After the meeting, decisions, owners, and deadlines are fed back into the task registry and accountability loop. This is how Ali's meetings produce structured outputs instead of disappearing into the ether.</div>
+    <div class="logic-tip">Notion Agent pulls relationship data and past meetings, then drafts a 1-pager pre-brief. The CoS reviews and finalizes before Ali's meeting. Afterward, decisions, owners, and deadlines feed back into the task registry and accountability loop. This is how Ali's meetings produce structured outputs instead of disappearing.</div>
   </div>
 </div>
 
@@ -659,11 +659,11 @@ Return results in structured JSON.</pre>
     </div>
     <div class="resp-row">
       <div class="resp-who" style="color:var(--warn)">Notion Agent</div>
-      <div class="resp-what">Everything else: tag, assign, track, flag, post-meeting pings, morning to-dos, detect emoji reactions (done/remove/blocked), update Notion, weekly pattern scans, draft pre-briefs for CEO meetings.</div>
+      <div class="resp-what">Everything else: tagging, assigning, tracking, flagging, post-meeting pings, morning to-dos, detecting emoji reactions (done/remove/blocked), updating Notion, running weekly pattern scans, and drafting pre-briefs for CEO meetings.</div>
     </div>
     <div class="resp-row">
       <div class="resp-who" style="color:var(--ok)">CoS</div>
-      <div class="resp-what">Audit agent output, verify escalations before they reach Ali, finalize CEO's Office OS, use OKR insights to identify zero-to-one strategic initiatives.</div>
+      <div class="resp-what">Audits agent output, verifies escalations before they reach Ali, finalizes CEO's Office OS, and uses OKR insights to identify zero-to-one strategic initiatives.</div>
     </div>
   </div>
 </div>
@@ -679,7 +679,7 @@ Return results in structured JSON.</pre>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip"><strong>Compounding errors:</strong> AI agents can misclassify or mis-assign. The CoS sits between the agent and Ali as the quality gate. Nothing reaches Ali that the CoS has not verified.<br><br><strong>Alert fatigue:</strong> Each layer filters. ICs see tasks. Managers see patterns. Ali sees red flags. The system reduces noise at every level.<br><br><strong>Gaming:</strong> If someone marks everything &#x2705; without doing it, OKR detects the pattern: high completion rate but flat OKR progress. Cross-referencing multiple signals catches anomalies.<br><br><strong>Emoji adoption:</strong> Three reactions (&#x2705; &#x274C; &#x2757;) require zero learning. The CoS demos the full system in Week 4 with real examples from the discovery phase.</div>
+    <div class="logic-tip"><strong>Compounding errors:</strong> AI agents can misclassify or mis-assign. The CoS sits between the agent and Ali as the quality gate. Nothing reaches Ali without CoS verification.<br><br><strong>Alert fatigue:</strong> Each layer filters. ICs see tasks, managers see patterns, Ali sees red flags. Noise reduces at every level.<br><br><strong>Gaming:</strong> If someone marks everything &#x2705; without doing it, OKR detects the gap: high completion rate but flat OKR progress. Cross-referencing multiple signals catches anomalies.<br><br><strong>Emoji adoption:</strong> Three reactions (&#x2705; &#x274C; &#x2757;) require zero learning. The CoS demos the full system in Week 4 with real examples from the discovery phase.</div>
   </div>
 </div>
 
@@ -687,14 +687,14 @@ Return results in structured JSON.</pre>
 <div class="rv" id="nav-rollout">
   <div class="sec-label">90-Day Rollout (12 weeks)</div>
   <div class="outputs" style="flex-direction:column;gap:8px">
-    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--info)">Weeks 1&#8211;3: Organizational Map</div><div class="out-d">Build the organizational map. Attend every standup across all 6 teams. Understand the real information flow — where decisions actually get made, where handoffs break, where redundancies live. Document gaps between how teams think information moves and how it actually moves. This is the foundation the entire system is designed against.</div></div>
-    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--warn)">Weeks 4&#8211;6: Pilot with 1&#8211;2 Teams</div><div class="out-d">Notion Agent goes live with 1&#8211;2 teams. Validate tagging accuracy, test post-meeting pings and emoji reactions, tune the instruction page encoding CoS logic. Data starts accumulating. First manager dossier drafts generated. CoS reviews every output manually — no automation reaches Ali yet.</div></div>
-    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--err)">Weeks 7&#8211;9: Tune on Breakage</div><div class="out-d">System has been running long enough to break. Tune based on real failure patterns: misclassified tasks, missed escalations, emoji adoption gaps, edge cases in cross-team dependencies. Refine the Notion Agent's instruction page. First OKR Report generated from 6+ weeks of accumulated data. CoS stress-tests every layer before scaling.</div></div>
-    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--ok)">Weeks 10&#8211;12: Scale to Full Org</div><div class="out-d">Roll the revised OS out to all 6 teams. Emoji reactions live org-wide. Daily dossiers flowing to every manager. OKR Reports running weekly for team leads and monthly for Ali. CoS operating at the audit + strategy layer: verifying escalations, finalizing CEO's Office OS, using OKR insights to drive zero-to-one initiatives.</div></div>
+    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--info)">Weeks 1&#8211;3: Organizational Map</div><div class="out-d">Build the organizational map. Attend every standup across all 6 teams. Understand the real information flow: where decisions actually get made, where handoffs break, where redundancies live. Document the gaps between how teams think information moves and how it actually moves. This is the foundation the entire system is designed against.</div></div>
+    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--warn)">Weeks 4&#8211;6: Pilot with 1&#8211;2 Teams</div><div class="out-d">Notion Agent goes live with 1&#8211;2 teams. Validate tagging accuracy, test post-meeting pings and emoji reactions, tune the instruction page encoding CoS logic. Data starts accumulating. First manager dossier drafts generated. The CoS reviews every output manually. No automation reaches Ali yet.</div></div>
+    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--err)">Weeks 7&#8211;9: Tune on Breakage</div><div class="out-d">The system has been running long enough to break. Tune based on real failure patterns: misclassified tasks, missed escalations, emoji adoption gaps, edge cases in cross-team dependencies. Refine the Notion Agent's instruction page. First OKR Report generated from 6+ weeks of accumulated data. The CoS stress-tests every layer before scaling.</div></div>
+    <div class="fl out" style="width:100%"><div class="out-t" style="color:var(--ok)">Weeks 10&#8211;12: Scale to Full Org</div><div class="out-d">Roll the revised OS out to all 6 teams. Emoji reactions live org-wide. Daily dossiers flowing to every manager. OKR Reports running weekly for team leads and monthly for Ali. The CoS is now operating at the audit and strategy layer: verifying escalations, finalizing CEO's Office OS, and using OKR insights to drive zero-to-one initiatives.</div></div>
   </div>
   <div class="logic-wrap">
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip"><strong>Why 3 weeks of discovery before any automation?</strong> The CoS needs to understand the real information topology — not the org chart version, but how decisions actually flow. Without this, the Notion Agent's instruction page will encode assumptions instead of reality.<br><br><strong>Why pilot with 1-2 teams?</strong> Small blast radius. If the agent misclassifies, it affects one team, not six. The CoS can manually review every output and tune before scaling.<br><br><strong>Why a dedicated tuning phase?</strong> Every system breaks differently at scale. Weeks 7-9 are specifically reserved for fixing what broke during the pilot — not adding features, but hardening the foundation.</div>
+    <div class="logic-tip"><strong>Why 3 weeks of discovery before any automation?</strong> The CoS needs to understand the real information topology, not the org chart version, but how decisions actually flow. Without this, the Notion Agent's instruction page will encode assumptions instead of reality.<br><br><strong>Why pilot with 1-2 teams?</strong> Small blast radius. If the agent misclassifies, it affects one team, not six. The CoS can manually review every output and tune before scaling.<br><br><strong>Why a dedicated tuning phase?</strong> Every system breaks differently at scale. Weeks 7-9 are reserved for fixing what broke during the pilot. Not adding features, just hardening the foundation.</div>
   </div>
 </div>
 
@@ -728,7 +728,7 @@ Return results in structured JSON.</pre>
   <strong>Why Build 2?</strong> Claude API costs drop from scaling-with-meetings to flat (7 daily + 1 weekly + 1 monthly). <a href="https://quillmeetings.com/" style="color:var(--ok)">Quill</a> adds local-first privacy. <a href="https://www.getchief.ai/" style="color:var(--ok)">Chief AI</a> gives Ali a purpose-built Office OS.
   <div class="logic-wrap" style="margin-top:6px">
     <div class="logic-btn" style="border-color:rgba(52,211,153,.2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">In Build 1, Claude makes an API call for every meeting note (transpose), every dossier (daily), and every OKR Report (weekly/monthly). Across 6 teams with multiple daily meetings, that is dozens of Claude API calls per day for transposition alone. In Build 2, Quill handles extraction locally on-device. Claude's transpose calls drop to zero. The only remaining API spend is dossiers (7 calls/day) and OKR Reports (1/week, 1/month). As Inkitt scales from 150 to 400 people, Build 1's costs grow linearly. Build 2's costs stay flat.</div>
+    <div class="logic-tip">In Build 1, Claude makes an API call for every meeting note (transpose), every dossier (daily), and every OKR Report (weekly/monthly). Across 6 teams with multiple daily meetings, that adds up to dozens of API calls per day just for transposition. In Build 2, Quill handles extraction locally on-device, so Claude's transpose calls drop to zero. The only remaining API spend is dossiers (7 calls/day) and OKR Reports (1/week, 1/month). As Inkitt scales from 150 to 400 people, Build 1 costs grow linearly. Build 2 costs stay flat.</div>
   </div>
 </div>
 
@@ -749,7 +749,7 @@ Return results in structured JSON.</pre>
       <div class="node-d">Via MCP (no API call)</div>
     </div>
   </div>
-  <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:rgba(255,255,255,.05);color:var(--warn);font-size:10px;display:inline-block">Desktop-only for now &#8212; Yacob (the COO) told me they're shipping mobile as we speak. Granola's iPhone app covers the gap until then.</div>
+  <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:rgba(255,255,255,.05);color:var(--warn);font-size:10px;display:inline-block">Desktop-only for now. Yacob (the COO) told me they're shipping mobile soon. Granola's iPhone app covers the gap until then.</div>
 </div>
 <div class="flow-down rv">&#8595;</div>
 
@@ -791,7 +791,7 @@ Return results in structured JSON.</pre>
 <!-- CEO's Office OS -->
 <div class="rv layer" id="nav-b2-ceo">
   <div class="layer-num" style="color:var(--err)"><span class="dot" style="color:var(--err)">&#9733;</span>CEO'S OFFICE OS <span class="badge" style="background:rgba(255,255,255,.05);color:var(--err)">Replaces manual build</span></div>
-  <div class="layer-title"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a> &#8212; Purpose-Built</div>
+  <div class="layer-title"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a>: Purpose-Built</div>
   <div class="flow">
     <div class="fl node">
       <div class="node-t" style="color:var(--err)">Pre-briefs</div>
@@ -811,7 +811,7 @@ Return results in structured JSON.</pre>
   <div style="font-size:10px;color:var(--t3);margin-top:6px">Created by ex-White House and Congress staff for exactly this use case.</div>
   <div class="logic-wrap">
     <div class="logic-btn" style="border-color:rgba(248,113,113,.2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a> replaces the manual pre-brief process from Build 1. Instead of Notion Agent drafting and the CoS reviewing, Chief AI handles scheduling intelligence, relationship memory (investors, talent, partners, board), and a priority dashboard. Ali gets a purpose-built interface instead of Slack messages the CoS assembles. This is the only new tool Ali needs to adopt, and only after Build 1 has established trust.</div>
+    <div class="logic-tip"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a> replaces the manual pre-brief process from Build 1. Instead of the Notion Agent drafting and the CoS reviewing, Chief AI handles scheduling intelligence, relationship memory (investors, talent, partners, board), and a priority dashboard. Ali gets a purpose-built interface instead of Slack messages the CoS assembles. It's the only new tool Ali needs to adopt, and only after Build 1 has established trust.</div>
   </div>
 </div>
 
