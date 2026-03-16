@@ -178,9 +178,9 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .prin-d{font-size:9.5px;color:var(--t2);line-height:1.4}
 
 /* SEE WORKFLOW CARD */
-.wf-card{margin:8px 0 20px;padding:22px 24px;border-radius:var(--rl);border:1px solid var(--br2);background:rgba(255,255,255,.03);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
-.wf-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,255,255,.04);border-color:#444}
-.wf-card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 70%);pointer-events:none}
+.wf-card{margin:8px 0 20px;padding:22px 24px;border-radius:var(--rl);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(255,255,255,.04)}
+.wf-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,255,255,.08);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.12)}
+.wf-card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);pointer-events:none}
 .wf-card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .wf-card-top svg{width:20px;height:20px;color:var(--info);flex-shrink:0}
 .wf-card-title{font-size:15px;font-weight:700;color:var(--t1)}
