@@ -87,6 +87,25 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 .layer-title{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-.2px}
 .layer-brief{font-size:11px;color:var(--t2);margin-bottom:12px;line-height:1.5}
 
+/* TIMELINE */
+.timeline{position:relative;padding:0 0 20px}
+.tl-track{position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent 0%,rgba(255,255,255,.08) 5%,rgba(255,255,255,.08) 95%,transparent 100%);z-index:1}
+.tl-progress{position:absolute;left:7px;top:0;width:2px;height:0;background:linear-gradient(to bottom,transparent,#a78bfa 10%,#38bdf8 30%,#fb923c 50%,#4ade80 65%,#c084fc 80%,#fb7185 95%);border-radius:1px;z-index:2;transition:height .05s linear}
+.tl-entry{display:flex;gap:28px;padding:0 0 48px;position:relative;z-index:3}
+.tl-entry:last-child{padding-bottom:0}
+.tl-marker{flex-shrink:0;width:16px;display:flex;flex-direction:column;align-items:center;padding-top:2px}
+.tl-dot{width:16px;height:16px;border-radius:50%;background:#0a0a0a;border:2px solid rgba(255,255,255,.15);position:relative;z-index:4;transition:border-color .3s,box-shadow .3s}
+.tl-dot.lit{box-shadow:0 0 10px currentColor}
+.tl-head{position:sticky;top:80px;align-self:flex-start;min-width:120px;max-width:160px;flex-shrink:0;display:none}
+@media(min-width:768px){.tl-head{display:block}}
+.tl-head-title{font-size:22px;font-weight:700;color:rgba(255,255,255,.25);transition:color .3s}
+.tl-head-title.lit{color:var(--accent,rgba(255,255,255,.55))}
+.tl-head-sub{font-size:9px;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.tl-body{flex:1;min-width:0}
+.tl-body .layer{margin:0}
+.tl-mobile-title{display:block;font-size:20px;font-weight:700;color:rgba(255,255,255,.35);margin-bottom:12px}
+@media(min-width:768px){.tl-mobile-title{display:none}}
+
 /* FLOW NODES */
 .flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:8px 0}
 .node{padding:12px 14px;border-radius:var(--r);min-width:100px;flex:1;background:rgba(255,255,255,.04);border:0.5px solid var(--br2)}
@@ -346,47 +365,64 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
   </div>
 </div>
 
+<!-- TIMELINE -->
+<div class="timeline rv" id="tlContainer">
+<div class="tl-track"></div>
+<div class="tl-progress" id="tlProgress"></div>
+
 <!-- L0 -->
-<div class="rv layer" id="nav-l0">
-  <div class="layer-num" style="color:var(--t2)"><span class="dot" style="color:var(--t2)">&#9733;</span>LAYER 0</div>
-  <div class="layer-title">Meetings &#8594; Transcripts</div>
-  <div class="layer-brief">Granola on every device. No bot. Device audio, any platform, all 6 teams.</div>
-  <div class="pool">
-    <div class="fl chip">Product</div><div class="fl chip">Engineering</div><div class="fl chip">Content</div>
-    <div class="fl chip">GTM</div><div class="fl chip">Data</div><div class="fl chip">BizOps</div>
-  </div>
-  <div class="logic-wrap">
-    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. Shared folders pool by team and auto-push every note to the CoS's Notion workspace. No bot joins calls. Captures device audio on any platform (Zoom, Meet, Teams, phone).</div>
+<div class="tl-entry" id="nav-l0">
+  <div class="tl-marker"><div class="tl-dot" data-color="#a78bfa"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#a78bfa">Layer 0</div><div class="tl-head-sub">Collection</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">Layer 0</div>
+    <div class="layer">
+      <div class="layer-num" style="color:var(--t2)"><span class="dot" style="color:var(--t2)">&#9733;</span>LAYER 0</div>
+      <div class="layer-title">Meetings &#8594; Transcripts</div>
+      <div class="layer-brief">Granola on every device. No bot. Device audio, any platform, all 6 teams.</div>
+      <div class="pool">
+        <div class="fl chip">Product</div><div class="fl chip">Engineering</div><div class="fl chip">Content</div>
+        <div class="fl chip">GTM</div><div class="fl chip">Data</div><div class="fl chip">BizOps</div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. Shared folders pool by team and auto-push every note to the CoS's Notion workspace. No bot joins calls. Captures device audio on any platform (Zoom, Meet, Teams, phone).</div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="flow-down rv">&#8595;</div>
 
 <!-- L1 -->
-<div class="rv layer" id="nav-l1">
-  <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 mins</div>
-  <div class="layer-num" style="color:var(--info)"><span class="dot" style="color:var(--info)">&#9733;</span>LAYER 1 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 1 of 3</span></div>
-  <div class="layer-title">Transcripts &#8594; Commitments</div>
-  <div class="layer-brief">Claude extracts commitments, owners, deadlines, OKR links. Writes structured rows to Notion.</div>
-  <div class="flow">
-    <div class="fl node">
-      <div class="node-t" style="color:var(--info)">Claude API</div>
-      <div class="node-d">Extract &amp; structure</div>
-      <div class="node-tool">Transpose only</div>
-    </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--info)">Notion DB</div>
-      <div class="node-d">Structured task rows</div>
+<div class="tl-entry" id="nav-l1">
+  <div class="tl-marker"><div class="tl-dot" data-color="#38bdf8"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#38bdf8">Layer 1</div><div class="tl-head-sub">Transpose</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">Layer 1</div>
+    <div class="layer">
+      <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 mins</div>
+      <div class="layer-num" style="color:var(--info)"><span class="dot" style="color:var(--info)">&#9733;</span>LAYER 1 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 1 of 3</span></div>
+      <div class="layer-title">Transcripts &#8594; Commitments</div>
+      <div class="layer-brief">Claude extracts commitments, owners, deadlines, OKR links. Writes structured rows to Notion.</div>
+      <div class="flow">
+        <div class="fl node">
+          <div class="node-t" style="color:var(--info)">Claude API</div>
+          <div class="node-d">Extract &amp; structure</div>
+          <div class="node-tool">Transpose only</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--info)">Notion DB</div>
+          <div class="node-d">Structured task rows</div>
+        </div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts commitments, owners, deadlines, team tags, dependencies, and OKR links. Each one becomes a structured row in the Notion task database. <strong>Claude does not orchestrate or distribute. Transpose only.</strong></div>
+      </div>
+      <button class="prompt-btn" onclick="document.getElementById('promptOverlay').classList.remove('hidden')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>See the actual prompt</button>
     </div>
   </div>
-  <div class="logic-wrap">
-    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts commitments, owners, deadlines, team tags, dependencies, and OKR links. Each one becomes a structured row in the Notion task database. <strong>Claude does not orchestrate or distribute. Transpose only.</strong></div>
-  </div>
-  <button class="prompt-btn" onclick="document.getElementById('promptOverlay').classList.remove('hidden')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>See the actual prompt</button>
 </div>
-<div class="flow-down rv">&#8595;</div>
 
 <!-- Prompt overlay -->
 <div id="promptOverlay" class="prompt-overlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
@@ -505,147 +541,172 @@ Return results in structured JSON.</pre>
 </div>
 
 <!-- L2 -->
-<div class="rv layer" id="nav-l2">
-  <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
-  <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2</div>
-  <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
-  <div class="layer-brief">Notion Agent orchestrates 24/7. Tags, assigns, tracks blockers (48hr SLA), flags OKR status.</div>
-  <div class="flow">
-    <div class="fl node">
-      <div class="node-t" style="color:var(--warn)">Notion Agent</div>
-      <div class="node-d">Orchestrate + distribute</div>
-      <div class="node-tool">24/7 autonomous</div>
+<div class="tl-entry" id="nav-l2">
+  <div class="tl-marker"><div class="tl-dot" data-color="#fb923c"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#fb923c">Layer 2</div><div class="tl-head-sub">Tracking</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">Layer 2</div>
+    <div class="layer">
+      <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
+      <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2</div>
+      <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
+      <div class="layer-brief">Notion Agent orchestrates 24/7. Tags, assigns, tracks blockers (48hr SLA), flags OKR status.</div>
+      <div class="flow">
+        <div class="fl node">
+          <div class="node-t" style="color:var(--warn)">Notion Agent</div>
+          <div class="node-d">Orchestrate + distribute</div>
+          <div class="node-tool">24/7 autonomous</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--warn)">Slack Pings</div>
+          <div class="node-d">Actions + to-dos</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--warn)">CoS Audit</div>
+          <div class="node-d">Spot-check, not route</div>
+        </div>
+      </div>
+      <div class="outputs" style="margin-top:10px">
+        <div class="fl out"><div class="out-t">Team Brain</div><div class="out-d">Institutional knowledge at scale</div></div>
+        <div class="fl out"><div class="out-t">OKR Tracker</div><div class="out-d">Auto-updated. Flags amber/red. Escalates to CoS.</div></div>
+        <div class="fl out"><div class="out-t">Blocker Registry</div><div class="out-d">48hr SLA. Auto-escalates to CoS on miss.</div></div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip">Configured with an instruction page that encodes the CoS's logic: how to tag teams, assign owners, what counts as an escalation, and communication standards. The CoS spot-checks tagging and verifies escalations. <strong>CoS role: auditor + strategist, not router.</strong></div>
+      </div>
     </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--warn)">Slack Pings</div>
-      <div class="node-d">Actions + to-dos</div>
+    <!-- VERCEL PROOF POINT -->
+    <div class="proof" style="margin-top:12px">
+      <strong>Proof point:</strong> Vercel built a Notion Custom Agent that grades and rewrites drafts intended for the CEO, using their Chief of Staff's guidance on tone and communication. Same concept: a CoS encoding their judgment into an autonomous agent, already working in production at a scaling tech company.
     </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--warn)">CoS Audit</div>
-      <div class="node-d">Spot-check, not route</div>
+    <!-- IC Touchpoints -->
+    <div style="margin:12px 0">
+      <div class="sec-label" style="color:var(--warn)">IC touchpoints (Slack-native, zero friction)</div>
+      <div style="font-size:11px;color:var(--t2);margin-bottom:8px"><strong style="color:var(--t1)">Post-meeting:</strong> Immediate action pings &nbsp;|&nbsp; <strong style="color:var(--t1)">Morning:</strong> Consolidated to-do list</div>
+      <div class="emoji-row">
+        <div class="fl emoji"><div class="emoji-icon">&#x2705;</div><div class="emoji-lbl">Done</div><div class="emoji-desc">Marks "done" in Notion</div></div>
+        <div class="fl emoji"><div class="emoji-icon">&#x274C;</div><div class="emoji-lbl">Remove</div><div class="emoji-desc">Deletes or flags for review</div></div>
+        <div class="fl emoji"><div class="emoji-icon">&#x2757;</div><div class="emoji-lbl">Blocked</div><div class="emoji-desc">Adds to blocker registry</div></div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip"><strong>Post-meeting ping:</strong> Once Claude finishes transposing, Notion Agent detects the new rows and pings each teammate in Slack with their action items. Each item is a separate message with the task, deadline, dependencies, and source meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks per IC and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> Detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: post-meeting pings (reactive) and a morning list (proactive). ICs never leave Slack.</div>
+      </div>
     </div>
-  </div>
-  <div class="outputs" style="margin-top:10px">
-    <div class="fl out"><div class="out-t">Team Brain</div><div class="out-d">Institutional knowledge at scale</div></div>
-    <div class="fl out"><div class="out-t">OKR Tracker</div><div class="out-d">Auto-updated. Flags amber/red. Escalates to CoS.</div></div>
-    <div class="fl out"><div class="out-t">Blocker Registry</div><div class="out-d">48hr SLA. Auto-escalates to CoS on miss.</div></div>
-  </div>
-  <div class="logic-wrap">
-    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Configured with an instruction page that encodes the CoS's logic: how to tag teams, assign owners, what counts as an escalation, and communication standards. The CoS spot-checks tagging and verifies escalations. <strong>CoS role: auditor + strategist, not router.</strong></div>
   </div>
 </div>
-
-<!-- VERCEL PROOF POINT — after Layer 2 -->
-<div class="rv proof">
-  <strong>Proof point:</strong> Vercel built a Notion Custom Agent that grades and rewrites drafts intended for the CEO, using their Chief of Staff's guidance on tone and communication. Same concept: a CoS encoding their judgment into an autonomous agent, already working in production at a scaling tech company.
-</div>
-
-<!-- IC Touchpoints -->
-<div class="rv" style="margin:12px 0">
-  <div class="sec-label" style="color:var(--warn)">IC touchpoints (Slack-native, zero friction)</div>
-  <div style="font-size:11px;color:var(--t2);margin-bottom:8px"><strong style="color:var(--t1)">Post-meeting:</strong> Immediate action pings &nbsp;|&nbsp; <strong style="color:var(--t1)">Morning:</strong> Consolidated to-do list</div>
-  <div class="emoji-row">
-    <div class="fl emoji"><div class="emoji-icon">&#x2705;</div><div class="emoji-lbl">Done</div><div class="emoji-desc">Marks "done" in Notion</div></div>
-    <div class="fl emoji"><div class="emoji-icon">&#x274C;</div><div class="emoji-lbl">Remove</div><div class="emoji-desc">Deletes or flags for review</div></div>
-    <div class="fl emoji"><div class="emoji-icon">&#x2757;</div><div class="emoji-lbl">Blocked</div><div class="emoji-desc">Adds to blocker registry</div></div>
-  </div>
-  <div class="logic-wrap">
-    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip"><strong>Post-meeting ping:</strong> Once Claude finishes transposing, Notion Agent detects the new rows and pings each teammate in Slack with their action items. Each item is a separate message with the task, deadline, dependencies, and source meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks per IC and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> Detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: post-meeting pings (reactive) and a morning list (proactive). ICs never leave Slack.</div>
-  </div>
-</div>
-<div class="flow-down rv">&#8595;</div>
 
 <!-- L3 -->
-<div class="rv layer" id="nav-l3">
-  <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 hour</div>
-  <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude job 2 of 3</span></div>
-  <div class="layer-title">Blocker/OKR Tracking &#8594; Escalation</div>
-  <div class="layer-brief">End-of-day visual dossier. Managers scan in 30 seconds. Ali gets red flags only.</div>
-  <div class="flow">
-    <div class="fl node">
-      <div class="node-t" style="color:var(--ok)">Claude API</div>
-      <div class="node-d">Reads Notion snapshot</div>
-      <div class="node-tool">Visual report to Slack</div>
+<div class="tl-entry" id="nav-l3">
+  <div class="tl-marker"><div class="tl-dot" data-color="#4ade80"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#4ade80">Layer 3</div><div class="tl-head-sub">Dossier</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">Layer 3</div>
+    <div class="layer">
+      <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 hour</div>
+      <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude job 2 of 3</span></div>
+      <div class="layer-title">Blocker/OKR Tracking &#8594; Escalation</div>
+      <div class="layer-brief">End-of-day visual dossier. Managers scan in 30 seconds. Ali gets red flags only.</div>
+      <div class="flow">
+        <div class="fl node">
+          <div class="node-t" style="color:var(--ok)">Claude API</div>
+          <div class="node-d">Reads Notion snapshot</div>
+          <div class="node-tool">Visual report to Slack</div>
+        </div>
+      </div>
+      <div class="outputs">
+        <div class="fl out"><div class="out-t">ICs</div><div class="out-d">Action pings + to-do. Never leave Slack.</div></div>
+        <div class="fl out"><div class="out-t">Managers</div><div class="out-d">Visual dossier, OKR links, progress, blockers</div></div>
+        <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Red flags, OKR progress, decision queue. Verified by CoS.</div></div>
+      </div>
     </div>
   </div>
-  <div class="outputs">
-    <div class="fl out"><div class="out-t">ICs</div><div class="out-d">Action pings + to-do. Never leave Slack.</div></div>
-    <div class="fl out"><div class="out-t">Managers</div><div class="out-d">Visual dossier, OKR links, progress, blockers</div></div>
-    <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Red flags, OKR progress, decision queue. Verified by CoS.</div></div>
-  </div>
 </div>
-<div class="flow-down rv">&#8595;</div>
 
-<!-- L4: FULL TEXT RESTORED, CoS voice -->
-<div class="rv layer" id="nav-l4">
-  <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
-  <div class="layer-num" style="color:var(--t1)"><span class="dot" style="color:var(--t1)">&#9733;</span>LAYER 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 3 of 3</span> <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Unlocks Week 7+</span></div>
-  <div class="layer-title">Escalation &#8594; Org Intelligence</div>
-  <div class="layer-brief">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, completion timestamp, and blocker duration writes to Notion automatically. Over weeks, that builds into a rich dataset of organizational performance. The Notion Agent runs weekly and monthly pattern scans, then Claude generates a narrative OKR Report.</div>
-  <div class="flow">
-    <div class="fl node">
-      <div class="node-t">Notion Agent</div>
-      <div class="node-d">Weekly and monthly trigger. Scans the full task database for recurring patterns across teams, individuals, and OKRs.</div>
-      <div class="node-tool">Pattern scan</div>
+<!-- L4 -->
+<div class="tl-entry" id="nav-l4">
+  <div class="tl-marker"><div class="tl-dot" data-color="#c084fc"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#c084fc">Layer 4</div><div class="tl-head-sub">Intelligence</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">Layer 4</div>
+    <div class="layer">
+      <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
+      <div class="layer-num" style="color:var(--t1)"><span class="dot" style="color:var(--t1)">&#9733;</span>LAYER 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 3 of 3</span> <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Unlocks Week 7+</span></div>
+      <div class="layer-title">Escalation &#8594; Org Intelligence</div>
+      <div class="layer-brief">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, completion timestamp, and blocker duration writes to Notion automatically. Over weeks, that builds into a rich dataset of organizational performance. The Notion Agent runs weekly and monthly pattern scans, then Claude generates a narrative OKR Report.</div>
+      <div class="flow">
+        <div class="fl node">
+          <div class="node-t">Notion Agent</div>
+          <div class="node-d">Weekly and monthly trigger. Scans the full task database for recurring patterns across teams, individuals, and OKRs.</div>
+          <div class="node-tool">Pattern scan</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--info)">Claude API</div>
+          <div class="node-d">Reads pattern findings and generates a visual report with trend lines, highlights, and recommendations.</div>
+          <div class="node-tool">OKR Report</div>
+        </div>
+      </div>
+      <div class="sec-label" style="margin-top:10px">What the Org Intelligence Report surfaces</div>
+      <div class="insights">
+        <div class="fl ins"><div class="ins-t">Chronic blockers</div><div class="ins-d">Themes that show up repeatedly in the blocker registry across teams and sprints.</div></div>
+        <div class="fl ins"><div class="ins-t">Completion velocity</div><div class="ins-d">Average time from assignment to completion across all 6 teams, tracked over time.</div></div>
+        <div class="fl ins"><div class="ins-t">Late completion patterns</div><div class="ins-d">Individuals closing tasks after deadline. Sensitive: visible to managers only, never in the exec roll-up.</div></div>
+        <div class="fl ins"><div class="ins-t">Dependency bottlenecks</div><div class="ins-d">Which team-to-team handoffs consistently create the most delays.</div></div>
+        <div class="fl ins"><div class="ins-t">OKR drift</div><div class="ins-d">A team completing tasks but OKR progress is flat. Busy, but not moving the needle.</div></div>
+        <div class="fl ins"><div class="ins-t">Meeting&#8594;action conversion</div><div class="ins-d">What percentage of meeting commitments actually get completed. A signal for culture and management quality.</div></div>
+      </div>
+      <div class="outputs" style="margin-top:10px">
+        <div class="fl out"><div class="out-t">Team leads</div><div class="out-d">Weekly: velocity, late completions, blocker patterns, OKR trends. Individual-level data.</div></div>
+        <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Monthly: org-wide patterns, cross-team bottlenecks, OKR drift, conversion rate. Structural only.</div></div>
+        <div class="fl out"><div class="out-t">CoS</div><div class="out-d">Full view. The CoS uses this to identify 1-2 zero-to-one strategic initiatives worth pursuing.</div></div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip">Unlocks at Week 7 from 6+ weeks of accumulated data. Data collection starts from day one through emoji reactions, with no additional effort required. Every &#x2705;, &#x274C;, and &#x2757; reaction writes a timestamp and status to Notion. The OKR layer simply reads what already exists. This is where the CoS shifts from operational auditor to strategic architect, identifying structural issues that no single team can see from their vantage point.</div>
+      </div>
     </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--info)">Claude API</div>
-      <div class="node-d">Reads pattern findings and generates a visual report with trend lines, highlights, and recommendations.</div>
-      <div class="node-tool">OKR Report</div>
-    </div>
-  </div>
-  <div class="sec-label" style="margin-top:10px">What the Org Intelligence Report surfaces</div>
-  <div class="insights">
-    <div class="fl ins"><div class="ins-t">Chronic blockers</div><div class="ins-d">Themes that show up repeatedly in the blocker registry across teams and sprints.</div></div>
-    <div class="fl ins"><div class="ins-t">Completion velocity</div><div class="ins-d">Average time from assignment to completion across all 6 teams, tracked over time.</div></div>
-    <div class="fl ins"><div class="ins-t">Late completion patterns</div><div class="ins-d">Individuals closing tasks after deadline. Sensitive: visible to managers only, never in the exec roll-up.</div></div>
-    <div class="fl ins"><div class="ins-t">Dependency bottlenecks</div><div class="ins-d">Which team-to-team handoffs consistently create the most delays.</div></div>
-    <div class="fl ins"><div class="ins-t">OKR drift</div><div class="ins-d">A team completing tasks but OKR progress is flat. Busy, but not moving the needle.</div></div>
-    <div class="fl ins"><div class="ins-t">Meeting&#8594;action conversion</div><div class="ins-d">What percentage of meeting commitments actually get completed. A signal for culture and management quality.</div></div>
-  </div>
-  <div class="outputs" style="margin-top:10px">
-    <div class="fl out"><div class="out-t">Team leads</div><div class="out-d">Weekly: velocity, late completions, blocker patterns, OKR trends. Individual-level data.</div></div>
-    <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Monthly: org-wide patterns, cross-team bottlenecks, OKR drift, conversion rate. Structural only.</div></div>
-    <div class="fl out"><div class="out-t">CoS</div><div class="out-d">Full view. The CoS uses this to identify 1-2 zero-to-one strategic initiatives worth pursuing.</div></div>
-  </div>
-  <div class="logic-wrap">
-    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Unlocks at Week 7 from 6+ weeks of accumulated data. Data collection starts from day one through emoji reactions, with no additional effort required. Every &#x2705;, &#x274C;, and &#x2757; reaction writes a timestamp and status to Notion. The OKR layer simply reads what already exists. This is where the CoS shifts from operational auditor to strategic architect, identifying structural issues that no single team can see from their vantage point.</div>
   </div>
 </div>
-<div class="flow-down rv">&#8595;</div>
 
-<!-- CEO's Office — CoS voice -->
-<div class="rv layer" id="nav-ceo">
-  <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 hours</div>
-  <div class="layer-num" style="color:var(--err)"><span class="dot" style="color:var(--err)">&#9733;</span>CEO'S OFFICE OS <span class="badge" style="background:rgba(255,255,255,.05);color:var(--err)">Built manually in Build 1</span></div>
-  <div class="layer-title">CEO's Office</div>
-  <div class="flow">
-    <div class="fl node">
-      <div class="node-t" style="color:var(--err)">Pre-brief</div>
-      <div class="node-d">Agent-drafted, CoS finalizes</div>
+<!-- CEO's Office -->
+<div class="tl-entry" id="nav-ceo">
+  <div class="tl-marker"><div class="tl-dot" data-color="#fb7185"></div></div>
+  <div class="tl-head"><div class="tl-head-title" style="--accent:#fb7185">CEO's Office</div><div class="tl-head-sub">Output</div></div>
+  <div class="tl-body">
+    <div class="tl-mobile-title">CEO's Office</div>
+    <div class="layer">
+      <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 hours</div>
+      <div class="layer-num" style="color:var(--err)"><span class="dot" style="color:var(--err)">&#9733;</span>CEO'S OFFICE OS <span class="badge" style="background:rgba(255,255,255,.05);color:var(--err)">Built manually in Build 1</span></div>
+      <div class="layer-title">CEO's Office</div>
+      <div class="flow">
+        <div class="fl node">
+          <div class="node-t" style="color:var(--err)">Pre-brief</div>
+          <div class="node-d">Agent-drafted, CoS finalizes</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--err)">Ali's meeting</div>
+          <div class="node-d">Prepared, decides faster</div>
+        </div>
+        <div class="arr">&#8594;</div>
+        <div class="fl node">
+          <div class="node-t" style="color:var(--err)">Action memo</div>
+          <div class="node-d">Fed back to task registry</div>
+        </div>
+      </div>
+      <div class="logic-wrap">
+        <div class="logic-btn" style="border-color:rgba(248,113,113,.2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+        <div class="logic-tip">Notion Agent pulls relationship data and past meetings, then drafts a 1-pager pre-brief. The CoS reviews and finalizes before Ali's meeting. Afterward, decisions, owners, and deadlines feed back into the task registry and accountability loop. This is how Ali's meetings produce structured outputs instead of disappearing.</div>
+      </div>
     </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--err)">Ali's meeting</div>
-      <div class="node-d">Prepared, decides faster</div>
-    </div>
-    <div class="arr">&#8594;</div>
-    <div class="fl node">
-      <div class="node-t" style="color:var(--err)">Action memo</div>
-      <div class="node-d">Fed back to task registry</div>
-    </div>
-  </div>
-  <div class="logic-wrap">
-    <div class="logic-btn" style="border-color:rgba(248,113,113,.2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
-    <div class="logic-tip">Notion Agent pulls relationship data and past meetings, then drafts a 1-pager pre-brief. The CoS reviews and finalizes before Ali's meeting. Afterward, decisions, owners, and deadlines feed back into the task registry and accountability loop. This is how Ali's meetings produce structured outputs instead of disappearing.</div>
   </div>
 </div>
+
+</div><!-- /timeline -->
 
 <div class="div rv"></div>
 
@@ -1054,6 +1115,46 @@ function openWorkflow(){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){closeWorkflow();document.getElementById('wbOverlay').classList.add('hidden')}
 });
+
+/* Timeline scroll progress */
+(function(){
+  var container=document.getElementById('tlContainer');
+  var progress=document.getElementById('tlProgress');
+  var dots=document.querySelectorAll('.tl-dot');
+  var titles=document.querySelectorAll('.tl-head-title');
+  if(!container||!progress) return;
+  var tlTicking=false;
+  window.addEventListener('scroll',function(){
+    if(!tlTicking){
+      requestAnimationFrame(function(){
+        var rect=container.getBoundingClientRect();
+        var containerTop=rect.top+window.scrollY;
+        var containerHeight=rect.height;
+        var scrollPos=window.scrollY+window.innerHeight*0.3;
+        var pct=Math.max(0,Math.min(1,(scrollPos-containerTop)/containerHeight));
+        progress.style.height=(pct*containerHeight)+'px';
+        var progressBottom=containerTop+(pct*containerHeight);
+        dots.forEach(function(dot,i){
+          var dotRect=dot.getBoundingClientRect();
+          var dotPos=dotRect.top+window.scrollY+dotRect.height/2;
+          if(progressBottom>=dotPos){
+            dot.classList.add('lit');
+            dot.style.borderColor=dot.dataset.color;
+            dot.style.boxShadow='0 0 10px '+dot.dataset.color.replace('var(','').replace(')','');
+            if(titles[i]) titles[i].classList.add('lit');
+          }else{
+            dot.classList.remove('lit');
+            dot.style.borderColor='';
+            dot.style.boxShadow='';
+            if(titles[i]) titles[i].classList.remove('lit');
+          }
+        });
+        tlTicking=false;
+      });
+      tlTicking=true;
+    }
+  });
+})();
 
 /* Side nav: active section tracking */
 (function(){
