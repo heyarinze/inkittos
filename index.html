@@ -509,6 +509,67 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
         <div class="fl out"><div class="out-t">Managers</div><div class="out-d">Visual dossier, OKR links, progress, blockers</div></div>
         <div class="fl out"><div class="out-t">Ali</div><div class="out-d">Red flags, OKR progress, decision queue. Verified by CoS.</div></div>
       </div>
+
+      <!-- Blocker Resolution -->
+      <div class="sec-label" style="color:#4ade80;margin-top:20px">Blocker resolution</div>
+      <div class="layer-brief">The system detects blockers fast and with context. What the CoS does next is a judgment call. Three buckets:</div>
+      <div class="outputs" style="margin-top:8px">
+        <div class="fl out" style="border-left:2px solid #4ade80"><div class="out-t" style="font-size:20px;font-weight:700;color:var(--t3);margin-bottom:4px">1</div><div class="out-t" style="color:#4ade80">CoS resolves directly</div><div class="out-d">Most blockers are routing failures. Person A does not know person B has the answer. Connect them, provide context, done.</div></div>
+        <div class="fl out" style="border-left:2px solid #4ade80"><div class="out-t" style="font-size:20px;font-weight:700;color:var(--t3);margin-bottom:4px">2</div><div class="out-t" style="color:#4ade80">Team lead decision</div><div class="out-d">Prioritization or resource trade-off beyond CoS authority. Bring it to the manager with a recommendation and a deadline.</div></div>
+        <div class="fl out" style="border-left:2px solid #4ade80"><div class="out-t" style="font-size:20px;font-weight:700;color:var(--t3);margin-bottom:4px">3</div><div class="out-t" style="color:#4ade80">Ali's authority</div><div class="out-d">Cross-platform priority conflicts or budget calls. Goes into Ali's pre-brief as options with a recommendation, never an open question.</div></div>
+      </div>
+      <div class="callout" style="border-left:3px solid #4ade80;margin-top:10px"><strong>Why this is not more automated:</strong> Blocker resolution requires someone who understands the org's politics, priorities, and people. The system's value is surfacing blockers fast with context. The CoS's value is knowing who can actually unblock it.</div>
+
+      <!-- OKR Architecture -->
+      <div class="div" style="margin:20px 0"></div>
+      <div class="sec-label" style="color:#4ade80">OKR architecture in Notion</div>
+      <div class="layer-brief">Three linked databases. Everything in Inkitt OS reads from them.</div>
+
+      <!-- OKR Database -->
+      <div style="margin-top:12px;padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03)">
+        <div style="font-size:15px;font-weight:700;color:#4ade80;margin-bottom:10px">OKR database</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Objective</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Title</span><span style="color:var(--t2)">Qualitative goal, e.g. "Make CandyJar the top vertical drama app in the US"</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Owner</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Person</span><span style="color:var(--t2)">Team lead accountable</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Contributing teams</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Multi-select</span><span style="color:var(--t2)">For cross-team OKRs: all teams whose work contributes</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Status</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Select</span><span style="color:var(--t2)">On track / At risk / Off track (auto-updated by Notion Agent)</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Key results</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Relation</span><span style="color:var(--t2)">Links to Key Results database</span></div>
+        </div>
+      </div>
+
+      <!-- Key Results Database -->
+      <div style="margin-top:10px;padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03)">
+        <div style="font-size:15px;font-weight:700;color:#4ade80;margin-bottom:10px">Key Results database</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Key result</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Title</span><span style="color:var(--t2)">Measurable target, e.g. "500K MAU on CandyJar by Q2"</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Target / Current</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Number</span><span style="color:var(--t2)">Progress = Current / Target. Drives dossier progress bars.</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Linked tasks</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Relation</span><span style="color:var(--t2)">Links to Task database. How Claude connects tasks to OKRs.</span></div>
+        </div>
+      </div>
+
+      <!-- Task Database -->
+      <div style="margin-top:10px;padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03)">
+        <div style="font-size:15px;font-weight:700;color:#4ade80;margin-bottom:10px">Task database (where Claude writes)</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px">
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Task / Owner / Team</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Title, Person, Select</span><span style="color:var(--t2)">Extracted from transcript by Claude</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Status</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Select</span><span style="color:var(--t2)">Open / Done / Blocked (updated via emoji reactions)</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Deadline</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Date</span><span style="color:var(--t2)">Extracted by Claude. Late completions flagged by Org Intelligence.</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Completed at / Blocked since</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Date</span><span style="color:var(--t2)">Timestamped on emoji reaction. Powers velocity + SLA metrics.</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Key result</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Relation</span><span style="color:var(--t2)">The OKR link. Claude maps this during extraction using the OKR database as lookup.</span></div>
+          <div style="display:flex;gap:10px;align-items:baseline"><span style="color:var(--t1);font-weight:600;min-width:140px">Dependencies</span><span class="badge" style="background:rgba(255,255,255,.08);color:var(--t3)">Multi-select</span><span style="color:var(--t2)">Other teams this task depends on. Powers bottleneck analysis.</span></div>
+        </div>
+      </div>
+
+      <!-- How It Connects -->
+      <div class="sec-label" style="color:#4ade80;margin-top:16px">How it connects</div>
+      <div class="outputs">
+        <div class="fl out"><div class="out-t">Claude's extraction</div><div class="out-d">OKR database is passed as lookup context in the prompt. Claude matches each task to the most relevant key result. Unlinked tasks are flagged for my review.</div></div>
+        <div class="fl out"><div class="out-t">Cross-team OKRs</div><div class="out-d">Primary owner sees all contributors' progress. Org Intelligence detects when one team is on track but the overall objective is stalling.</div></div>
+        <div class="fl out"><div class="out-t">Maintenance</div><div class="out-d">I set OKRs quarterly with each team lead. Progress auto-updates via the relation/formula chain. Drift detection catches tasks completing without metrics moving.</div></div>
+      </div>
+
+      <!-- Key Insight -->
+      <div class="callout" style="border-left:3px solid #4ade80;margin-top:10px"><strong>Key insight:</strong> OKRs are not bolted onto Inkitt OS. They are the connective tissue. Every task links to a key result. Every dossier shows progress. Org Intelligence detects when the link between tasks and outcomes is broken. Without this, the system tracks activity. With it, the system tracks impact.</div>
     </div>
   </div>
 </div>
@@ -694,11 +755,11 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
     <div class="layer">
       <div class="layer-num" style="color:#a78bfa"><span class="dot" style="color:#a78bfa">&#9733;</span>LAYER 0 + 1 <span class="badge" style="background:rgba(255,255,255,.05);color:#a78bfa"><a href="https://quillmeetings.com/">Quill</a> replaces Granola + Claude transpose</span></div>
       <div class="layer-title">Meetings &#8594; Transcripts &#8594; Commitments</div>
-      <div class="layer-brief"><a href="https://quillmeetings.com/">Quill</a> on every device. Records, transcribes, AND extracts locally. Writes to Notion via MCP. Claude's transpose job eliminated. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo</a>.</div>
+      <div class="layer-brief">With <a href="https://quillmeetings.com/">Quill</a> on every Inkitt device, we'll be able to record and transcribe meetings with Quilliam proactively extracting action items from them with the capacity to 'run' them in the background autonomously. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo</a>.</div>
       <div class="flow">
         <div class="fl node">
           <div class="node-t"><a href="https://quillmeetings.com/" style="color:#a78bfa">Quill</a></div>
-          <div class="node-d">Local capture + extract</div>
+          <div class="node-d">Meeting capture + commitment extraction + proactive action item execution</div>
           <div class="node-tool">Local-first</div>
         </div>
         <div class="arr">&#8594;</div>
@@ -707,7 +768,7 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
           <div class="node-d">Via MCP (no API call)</div>
         </div>
       </div>
-      <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:rgba(255,255,255,.05);color:#a78bfa;font-size:12px;display:inline-block">Desktop-only for now. Yacob (the COO) told me they're shipping mobile soon. Granola's iPhone app covers the gap until then.</div>
+      <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:rgba(255,255,255,.05);color:var(--t1);font-size:12px;display:inline-block">Desktop-only for now. Yacob (the COO) told me they're shipping mobile soon. Granola's iPhone app covers the gap until then. My founder-level access at Quill offers us great customization opportunities.</div>
     </div>
   </div>
 </div>
