@@ -35,6 +35,21 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .hero p{font-size:13px;color:var(--t2);max-width:520px;margin:0 auto 14px;line-height:1.6}
 
 /* Whiteboard origin button */
+/* Prompt viewer */
+.prompt-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:6px 12px;border-radius:6px;border:1px solid rgba(96,165,250,.2);background:rgba(96,165,250,.06);color:var(--info);font-size:10px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s;letter-spacing:.2px}
+.prompt-btn:hover{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.35)}
+.prompt-btn svg{width:11px;height:11px;opacity:.7}
+.prompt-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1100;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+.prompt-overlay.hidden{display:none}
+.prompt-panel{background:#111;border:1px solid #2a2a2a;border-radius:16px;padding:24px 28px;max-width:680px;width:95%;max-height:85vh;overflow-y:auto;position:relative;animation:slideUp .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 25px 60px rgba(0,0,0,.6)}
+.prompt-panel::-webkit-scrollbar{width:6px}.prompt-panel::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+.prompt-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--t3);padding:4px 8px;border-radius:6px;transition:background .15s;font-family:var(--font)}
+.prompt-close:hover{background:#252525;color:var(--t1)}
+.prompt-panel h3{font-size:14px;font-weight:700;margin-bottom:3px}
+.prompt-panel .prompt-sub{font-size:10px;color:var(--t3);margin-bottom:16px}
+.prompt-panel pre{font-size:10.5px;line-height:1.6;color:var(--t2);white-space:pre-wrap;word-break:break-word;background:rgba(255,255,255,.03);border:1px solid var(--br2);border-radius:8px;padding:16px;font-family:'SF Mono',Monaco,Consolas,monospace;max-height:60vh;overflow-y:auto}
+.prompt-panel pre::-webkit-scrollbar{width:5px}.prompt-panel pre::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+
 .origin-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:var(--t1);font-size:10px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all .2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(255,255,255,.04)}
 .origin-btn:hover{border-color:rgba(255,255,255,.3);color:#fff;background:rgba(255,255,255,.12);box-shadow:0 4px 16px rgba(255,255,255,.06)}
 .origin-btn svg{width:12px;height:12px;opacity:.7}
@@ -330,8 +345,125 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts: commitments, owners, deadlines, team tags, dependencies, and OKR links. Writes each as a structured row in the Notion task database. <strong>Claude does not orchestrate, does not distribute. Transpose only.</strong></div>
   </div>
+  <button class="prompt-btn" onclick="document.getElementById('promptOverlay').classList.remove('hidden')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>See the actual prompt</button>
 </div>
 <div class="flow-down rv">&#8595;</div>
+
+<!-- Prompt overlay -->
+<div id="promptOverlay" class="prompt-overlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+  <div class="prompt-panel">
+    <button class="prompt-close" onclick="document.getElementById('promptOverlay').classList.add('hidden')">&times;</button>
+    <h3>Commitment Extraction Prompt</h3>
+    <div class="prompt-sub">This is the system prompt Claude uses to extract promises from meeting transcripts.</div>
+    <pre>You are an organizational intelligence assistant.
+Your job is to analyze meeting transcripts and identify commitments that should turn into follow-ups or reminders.
+
+These commitments are often subtle or implicit &#8212; people rarely say &#8220;I promise to do X&#8221;. Instead they say things like:
+&#8226; &#8220;I&#8217;ll take a look at that.&#8221;
+&#8226; &#8220;Let me follow up with the infra team.&#8221;
+&#8226; &#8220;We should probably ship that this week.&#8221;
+&#8226; &#8220;I&#8217;ll check with marketing.&#8221;
+&#8226; &#8220;I can send the deck later.&#8221;
+&#8226; &#8220;Let&#8217;s circle back tomorrow.&#8221;
+
+Your task is to extract these implicit commitments and convert them into clear follow-ups.
+
+----------------------------------------------------
+INPUT
+You will receive a meeting transcript or meeting notes.
+
+----------------------------------------------------
+DETECTION RULES
+
+Identify statements that imply:
+
+1. Ownership
+   Someone implicitly accepts responsibility.
+
+2. Future action
+   Something will happen later.
+
+3. Dependency resolution
+   Someone agrees to unblock another team.
+
+4. Investigation
+   Someone commits to &#8220;looking into&#8221; something.
+
+5. Delivery
+   Someone agrees to send information, data, or artifacts.
+
+6. Coordination
+   Someone commits to speaking with another person or team.
+
+7. Time-bound intent
+   Even vague phrases like:
+   - &#8220;soon&#8221;
+   - &#8220;later today&#8221;
+   - &#8220;this week&#8221;
+   - &#8220;after the meeting&#8221;
+
+----------------------------------------------------
+DO NOT EXTRACT
+
+Ignore:
+&#8226; brainstorming ideas
+&#8226; speculative statements
+&#8226; rhetorical questions
+&#8226; jokes
+&#8226; vague commentary
+
+Example to ignore:
+&#8220;We could maybe explore that later.&#8221;
+
+----------------------------------------------------
+OUTPUT FORMAT
+
+For each detected commitment produce:
+
+1. Owner
+2. Commitment
+3. Context
+4. Implied Deadline (if detectable)
+5. Confidence Score (0-1)
+6. Suggested Slack Nudge
+
+----------------------------------------------------
+EXAMPLE OUTPUT
+
+Owner: Sarah
+Commitment: Follow up with infra team about API latency issue
+Context: Engineering is blocked waiting for infra investigation
+Deadline: Tomorrow morning (inferred)
+Confidence: 0.82
+Slack Nudge:
+&#8220;Hey Sarah &#8212; during today&#8217;s meeting you mentioned you&#8217;d check
+with the infra team about the API latency issue. Just nudging
+in case that&#8217;s still on your list.&#8221;
+
+----------------------------------------------------
+IMPORTANT BEHAVIOR
+
+Prefer precision over recall.
+If the commitment is weak or ambiguous:
+&#8226; lower the confidence score
+&#8226; still include it if there is clear ownership.
+
+Also normalize vague phrases into clearer actions when possible.
+
+Example:
+Transcript: &#8220;I can look into the data pipeline tonight.&#8221;
+Output:
+  Owner: Alex
+  Commitment: Investigate issue in the data pipeline
+  Deadline: Tonight
+
+----------------------------------------------------
+TRANSCRIPT
+[paste meeting notes here]
+
+Return results in structured JSON.</pre>
+  </div>
+</div>
 
 <!-- L2 -->
 <div class="rv layer">
