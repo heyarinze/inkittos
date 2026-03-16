@@ -983,43 +983,43 @@ function openWorkflow(){
   document.getElementById('wfOverlay').classList.remove('hidden');
 
   var exSteps=[
-    {text:'Content standup',color:'#9aa0a6'},
-    {text:'Promise made',color:'#60a5fa'},
-    {text:'Dependency on Product',color:'#fbbf24'},
-    {text:'Missed SLA (48hr)',color:'#f87171'},
-    {text:'Escalation to CoS',color:'#34d399'},
-    {text:'Ali decision',color:'#f87171'},
-    {text:'New process / staffing',color:'#e8eaed'}
+    {text:'Content standup',color:'#a78bfa'},
+    {text:'Promise made',color:'#38bdf8'},
+    {text:'Dependency on Product',color:'#fb923c'},
+    {text:'Missed SLA (48hr)',color:'#fb923c'},
+    {text:'Escalation to CoS',color:'#4ade80'},
+    {text:'Ali decision',color:'#fb7185'},
+    {text:'New process / staffing',color:'#fbbf24'}
   ];
 
   var b1={
     title:'Build 1 Workflow',
     sub:'Granola captures \u2192 Claude transposes \u2192 Notion Agent orchestrates \u2192 Claude generates dossiers + OKR',
     sections:[
-      {label:'Layer 0: Collection',color:'#9aa0a6',nodes:[
-        {name:'Granola',desc:'Device audio capture',io_in:'Meetings (all 6 teams)',io_out:'Raw transcripts',bg:'#1a1a1a',color:'#9aa0a6',delay:0}
+      {label:'Layer 0: Collection',color:'#a78bfa',nodes:[
+        {name:'Granola',desc:'Device audio capture',io_in:'Meetings (all 6 teams)',io_out:'Raw transcripts',bg:'rgba(167,139,250,.1)',color:'#a78bfa',delay:0}
       ]},
-      {label:'Layer 1: Transpose',color:'#60a5fa',nodes:[
-        {name:'Claude API',desc:'Extract & structure',io_in:'Raw transcripts',io_out:'Structured commitments',bg:'#172554',color:'#60a5fa',delay:.2},
-        {name:'Notion DB',desc:'Task rows',io_in:'Structured data',io_out:'Queryable database',bg:'#172554',color:'#60a5fa',delay:.4}
+      {label:'Layer 1: Transpose',color:'#38bdf8',nodes:[
+        {name:'Claude API',desc:'Extract & structure',io_in:'Raw transcripts',io_out:'Structured commitments',bg:'rgba(56,189,248,.1)',color:'#38bdf8',delay:.2},
+        {name:'Notion DB',desc:'Task rows',io_in:'Structured data',io_out:'Queryable database',bg:'rgba(56,189,248,.1)',color:'#38bdf8',delay:.4}
       ]},
-      {label:'Layer 2: Execution Tracking',color:'#fbbf24',nodes:[
-        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows',io_out:'Assigned actions + status',bg:'#422006',color:'#fbbf24',delay:.55},
-        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'#422006',color:'#fbbf24',delay:.7}
+      {label:'Layer 2: Tracking',color:'#fb923c',nodes:[
+        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows',io_out:'Assigned actions + status',bg:'rgba(251,146,60,.1)',color:'#fb923c',delay:.55},
+        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'rgba(251,146,60,.1)',color:'#fb923c',delay:.7}
       ]},
-      {label:'Layer 3: Manager Dossier',color:'#34d399',nodes:[
-        {name:'Claude API',desc:'Visual team report',io_in:'Notion snapshot (done/open/blocked)',io_out:'30-sec scannable dossier',bg:'#052e16',color:'#34d399',delay:.85}
+      {label:'Layer 3: Escalation',color:'#4ade80',nodes:[
+        {name:'Claude API',desc:'Visual team report',io_in:'Notion snapshot (done/open/blocked)',io_out:'30-sec scannable dossier',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:.85}
       ]},
-      {label:'Layer 4: Org Intelligence',color:'#e8eaed',nodes:[
-        {name:'Notion Agent',desc:'Pattern scan',io_in:'Weeks of emoji + completion data',io_out:'Anomalies + trends',bg:'#1a1a1a',color:'#9aa0a6',delay:1},
-        {name:'Claude API',desc:'OKR Report',io_in:'Pattern findings',io_out:'Narrative with recommendations',bg:'#172554',color:'#60a5fa',delay:1.15}
+      {label:'Layer 4: Intelligence',color:'#fbbf24',nodes:[
+        {name:'Notion Agent',desc:'Pattern scan',io_in:'Weeks of emoji + completion data',io_out:'Anomalies + trends',bg:'rgba(251,191,36,.1)',color:'#fbbf24',delay:1},
+        {name:'Claude API',desc:'OKR Report',io_in:'Pattern findings',io_out:'Narrative with recommendations',bg:'rgba(251,191,36,.1)',color:'#fbbf24',delay:1.15}
       ]}
     ],
     outputs:[
-      {name:'ICs',desc:'Slack pings + to-dos',bg:'#052e16',color:'#34d399',delay:1.3},
-      {name:'Managers',desc:'Visual dossier + weekly OKR',bg:'#052e16',color:'#34d399',delay:1.4},
-      {name:'Team Leads',desc:'Individual-level patterns',bg:'#172554',color:'#60a5fa',delay:1.5},
-      {name:"CEO's Office",desc:'Red flags + monthly structural',bg:'#450a0a',color:'#f87171',delay:1.6}
+      {name:'ICs',desc:'Slack pings + to-dos',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:1.3},
+      {name:'Managers',desc:'Visual dossier + weekly OKR',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:1.4},
+      {name:'Team Leads',desc:'Individual-level patterns',bg:'rgba(251,191,36,.1)',color:'#fbbf24',delay:1.5},
+      {name:"CEO's Office",desc:'Red flags + monthly structural',bg:'rgba(251,113,133,.1)',color:'#fb7185',delay:1.6}
     ]
   };
 
@@ -1027,26 +1027,26 @@ function openWorkflow(){
     title:'Build 2 Workflow',
     sub:'Quill captures + extracts locally \u2192 Notion Agent orchestrates \u2192 Claude dossiers + OKR \u2192 Chief AI powers CEO\'s Office',
     sections:[
-      {label:'Layer 0+1: Capture + Extract (unified)',color:'#9aa0a6',nodes:[
-        {name:'Quill',desc:'Local capture + extract',io_in:'Meetings (all 6 teams)',io_out:'Structured commitments (local)',bg:'#1a1a1a',color:'#9aa0a6',delay:0},
-        {name:'Notion DB',desc:'Via MCP',io_in:'MCP structured data',io_out:'Queryable database',bg:'#172554',color:'#60a5fa',delay:.2}
+      {label:'Layer 0+1: Capture + Extract',color:'#a78bfa',nodes:[
+        {name:'Quill',desc:'Meeting capture + commitment extraction',io_in:'Meetings (all 6 teams)',io_out:'Structured commitments (local)',bg:'rgba(167,139,250,.1)',color:'#a78bfa',delay:0},
+        {name:'Notion DB',desc:'Via MCP',io_in:'MCP structured data',io_out:'Queryable database',bg:'rgba(167,139,250,.1)',color:'#a78bfa',delay:.2}
       ]},
-      {label:'Layer 2: Execution Tracking (same)',color:'#fbbf24',nodes:[
-        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows (richer from Quill)',io_out:'Assigned actions + status',bg:'#422006',color:'#fbbf24',delay:.35},
-        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'#422006',color:'#fbbf24',delay:.5}
+      {label:'Layer 2: Tracking',color:'#fb923c',nodes:[
+        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows (richer from Quill)',io_out:'Assigned actions + status',bg:'rgba(251,146,60,.1)',color:'#fb923c',delay:.35},
+        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'rgba(251,146,60,.1)',color:'#fb923c',delay:.5}
       ]},
-      {label:'Layer 3+4: Dossier + OKR',color:'#34d399',nodes:[
-        {name:'Claude API',desc:'Dossier + OKR Report',io_in:'Notion snapshot + pattern data',io_out:'Visual reports + recommendations',bg:'#052e16',color:'#34d399',delay:.65}
+      {label:'Layer 3+4: Escalation + Intelligence',color:'#4ade80',nodes:[
+        {name:'Claude API',desc:'Dossier + OKR Report',io_in:'Notion snapshot + pattern data',io_out:'Visual reports + recommendations',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:.65}
       ]},
-      {label:"CEO's Office OS",color:'#f87171',nodes:[
-        {name:'Chief AI',desc:'Pre-briefs, intel, dashboard',io_in:'Calendar + relationship data + OKR',io_out:'Decision-ready 1-pagers',bg:'#450a0a',color:'#f87171',delay:.8}
+      {label:"CEO's Office OS",color:'#fb7185',nodes:[
+        {name:'Chief AI',desc:'Pre-briefs, intel, dashboard',io_in:'Calendar + relationship data + OKR',io_out:'Decision-ready 1-pagers',bg:'rgba(251,113,133,.1)',color:'#fb7185',delay:.8}
       ]}
     ],
     outputs:[
-      {name:'ICs',desc:'Same Slack experience',bg:'#052e16',color:'#34d399',delay:.95},
-      {name:'Managers',desc:'Same dossier (cheaper)',bg:'#052e16',color:'#34d399',delay:1.05},
-      {name:'Team Leads',desc:'OKR (cheaper)',bg:'#172554',color:'#60a5fa',delay:1.15},
-      {name:"CEO's Office",desc:'Chief AI OS',bg:'#450a0a',color:'#f87171',delay:1.25}
+      {name:'ICs',desc:'Same Slack experience',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:.95},
+      {name:'Managers',desc:'Same dossier (cheaper)',bg:'rgba(74,222,128,.1)',color:'#4ade80',delay:1.05},
+      {name:'Team Leads',desc:'OKR (cheaper)',bg:'rgba(251,191,36,.1)',color:'#fbbf24',delay:1.15},
+      {name:"CEO's Office",desc:'Chief AI OS',bg:'rgba(251,113,133,.1)',color:'#fb7185',delay:1.25}
     ]
   };
 
