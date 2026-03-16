@@ -90,7 +90,7 @@ body.static .fl:hover,body.static .wf-card:hover{transform:none!important}
 /* TIMELINE */
 .timeline{position:relative;padding:0 0 20px}
 .tl-track{position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent 0%,rgba(255,255,255,.08) 5%,rgba(255,255,255,.08) 95%,transparent 100%);z-index:1}
-.tl-progress{position:absolute;left:7px;top:0;width:2px;height:0;border-radius:1px;z-index:2;transition:height .05s linear}
+.tl-progress{position:absolute;left:7px;top:0;width:2px;height:0;background:rgba(255,255,255,.35);border-radius:1px;z-index:2;transition:height .05s linear}
 .tl-entry{display:flex;gap:28px;padding:0 0 48px;position:relative;z-index:3}
 .tl-entry:last-child{padding-bottom:0}
 .tl-marker{flex-shrink:0;width:16px;display:flex;flex-direction:column;align-items:center;padding-top:2px}
@@ -1156,42 +1156,18 @@ document.addEventListener('keydown',function(e){
     if(!container||!progress) return null;
     var dots=container.querySelectorAll('.tl-dot');
     var titles=container.querySelectorAll('.tl-head-title');
-    return {container:container,progress:progress,dots:dots,titles:titles,gradientSet:false};
+    return {container:container,progress:progress,dots:dots,titles:titles};
   }
   var timelines=[
     initTimeline('tlContainer','tlProgress'),
     initTimeline('tlContainerB2','tlProgressB2')
   ].filter(Boolean);
 
-  function buildGradient(tl){
-    var cRect=tl.container.getBoundingClientRect();
-    var cTop=cRect.top+window.scrollY;
-    var cH=cRect.height;
-    if(cH<1) return;
-    var stops=['transparent 0%'];
-    tl.dots.forEach(function(dot,i){
-      var dRect=dot.getBoundingClientRect();
-      var dPos=dRect.top+window.scrollY+dRect.height/2;
-      var pct=Math.max(0,Math.min(100,((dPos-cTop)/cH)*100));
-      var color=dot.dataset.color;
-      if(i>0){
-        var prevColor=tl.dots[i-1].dataset.color;
-        stops.push(prevColor+' '+(pct-0.5)+'%');
-      }
-      stops.push(color+' '+pct+'%');
-    });
-    var lastColor=tl.dots[tl.dots.length-1].dataset.color;
-    stops.push(lastColor+' 100%');
-    tl.progress.style.background='linear-gradient(to bottom,'+stops.join(',')+')';
-    tl.gradientSet=true;
-  }
-
   var tlTicking=false;
   function onScroll(){
     if(!tlTicking){
       requestAnimationFrame(function(){
         timelines.forEach(function(tl){
-          if(!tl.gradientSet) buildGradient(tl);
           var rect=tl.container.getBoundingClientRect();
           var containerTop=rect.top+window.scrollY;
           var containerHeight=rect.height;
@@ -1221,10 +1197,6 @@ document.addEventListener('keydown',function(e){
     }
   }
   window.addEventListener('scroll',onScroll);
-  window.addEventListener('resize',function(){
-    timelines.forEach(function(tl){tl.gradientSet=false});
-  });
-  setTimeout(function(){timelines.forEach(buildGradient)},200);
 })();
 
 /* Side nav: active section tracking */
