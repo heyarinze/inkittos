@@ -47,14 +47,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .wb-close:hover{background:#252525;color:var(--t1)}
 .wb-title{font-size:14px;font-weight:700;margin-bottom:3px}
 .wb-sub{font-size:10px;color:var(--t3);margin-bottom:16px}
-.wb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.wb-col{padding:12px;border-radius:var(--r);border:1px dashed var(--br2);background:rgba(255,255,255,.02)}
-.wb-col-t{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);margin-bottom:8px}
-.wb-item{font-size:10px;color:var(--t2);line-height:1.6;margin-bottom:4px}
-.wb-item strong{color:var(--t1);font-weight:600}
-.wb-flow{margin-top:14px;padding:12px;border-radius:var(--r);border:1px solid var(--bri);background:rgba(96,165,250,.04)}
-.wb-flow-t{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--info);margin-bottom:6px}
-.wb-flow-steps{font-size:10px;color:var(--t2);line-height:1.7}
+.wb-img{width:100%;border-radius:8px;display:block}
 
 /* BUILD SWITCHER */
 .switcher{display:flex;gap:0;margin:0 auto 30px;max-width:520px;position:sticky;top:12px;z-index:100}
@@ -234,42 +227,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 <button class="wb-close" onclick="document.getElementById('wbOverlay').classList.add('hidden')">&times;</button>
 <div class="wb-title">Where this started</div>
 <div class="wb-sub">Original whiteboard session — mapping inputs, tools, risks, teams, and the information flow before any system was built.</div>
-<div class="wb-grid">
-  <div class="wb-col">
-    <div class="wb-col-t">Inputs Mapped</div>
-    <div class="wb-item"><strong>Meeting commitments</strong> &#8594; tracked &#8594; Notion, Granola</div>
-    <div class="wb-item"><strong>Team daily standups</strong> &#8594; transcribed + analyzed &#8594; Granola, Notion, Claude</div>
-    <div class="wb-item"><strong>Cross-team blockers</strong> &#8594; flagged automatically &#8594; Notion, Slack</div>
-    <div class="wb-item"><strong>OKR progress</strong> &#8594; monitored in real time &#8594; Notion, Claude</div>
-  </div>
-  <div class="wb-col">
-    <div class="wb-col-t">Risks Identified</div>
-    <div class="wb-item">&#8226; Switch cost &amp; training time</div>
-    <div class="wb-item">&#8226; Team pushback</div>
-    <div class="wb-item">&#8226; Slow rollout</div>
-    <div class="wb-item">&#8226; No human review before escalation to Ali</div>
-  </div>
-  <div class="wb-col">
-    <div class="wb-col-t">Teams (5 mapped, became 6)</div>
-    <div class="wb-item">1. Product &nbsp; 2. Engineering &nbsp; 3. Content &nbsp; 4. GTM &nbsp; 5. Data</div>
-  </div>
-  <div class="wb-col">
-    <div class="wb-col-t">Tools + Add-ons</div>
-    <div class="wb-item"><strong>Core:</strong> Notion, Granola, Claude, Slack</div>
-    <div class="wb-item"><strong>Add-ons:</strong> Dia browser, Zapier</div>
-    <div class="wb-item"><strong>Experimental:</strong> Chief AI, Quill, WABI</div>
-  </div>
-</div>
-<div class="wb-flow">
-  <div class="wb-flow-t">Original flow sketch (Audio &#8594; Text &#8594; Action)</div>
-  <div class="wb-flow-steps">
-    <strong>Meeting Recording</strong> (Granola + other) &#8594; <strong>Meeting Transcripting</strong> &#8594; <strong>Signal/Action Extraction</strong> &#8594; <strong>Task Registry (filing + tagging)</strong> &#8594; <strong>Blocker flagging</strong><br><br>
-    Then distributes to: <strong>Team Notion</strong> + <strong>Team Slack</strong><br><br>
-    Outputs: <strong>Daily dossier for ICs</strong> (commitments for the day) &#8226; <strong>Daily brief for managers</strong> (team tasks/projects) &#8226; <strong>EOD reminders</strong> to update open tasks &#8594; parsed by Claude, updated on Notion (OKR)<br><br>
-    <strong>Team daily digest distro</strong> &#8594; <strong>CoS verification</strong> &#8594; <strong>Executive escalation</strong><br><br>
-    Bottom of board: <strong>IC entry</strong> (initial) &#8594; <strong>Team Brain</strong> &#8594; <strong>IC report</strong> (final) &#8594; <strong>Manager dossier</strong> &#8594; <strong>CoS review</strong> &#8594; <strong>Executive dashboard</strong>
-  </div>
-</div>
+<img src="whiteboard.jpg" alt="Original whiteboard session" class="wb-img">
 </div>
 </div>
 
