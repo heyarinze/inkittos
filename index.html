@@ -18,17 +18,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--font);background:#0a0a0a;color:var(--t1);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:var(--info);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
-
 .page{max-width:820px;margin:0 auto;padding:32px 20px 80px}
 
 /* ===== SCROLL REVEAL ===== */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .rv.show{opacity:1;transform:translateY(0)}
-.rv.show-d1{transition-delay:.1s}
-.rv.show-d2{transition-delay:.2s}
-.rv.show-d3{transition-delay:.3s}
-
-/* Static mode: disable all animations */
 body.static .rv{opacity:1!important;transform:none!important;transition:none!important}
 
 /* ===== FLOAT ON HOVER ===== */
@@ -50,12 +44,11 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .sw-btn:first-child.on::after{background:var(--warn)}
 .sw-btn:last-child.on::after{background:var(--ok)}
 .sw-btn small{display:block;font-size:10px;font-weight:400;margin-top:3px;opacity:.6}
-
 .build{display:none}.build.on{display:block}
 
 /* ===== LAYER CARD ===== */
 .layer{margin:0 0 16px;padding:18px 20px;border-radius:var(--rl);position:relative;border:1px solid}
-.layer-num{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.layer-num{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .layer-num .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .layer-title{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-.2px}
 .layer-brief{font-size:11px;color:var(--t2);margin-bottom:12px;line-height:1.5}
@@ -67,8 +60,6 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .node-d{font-size:10px;opacity:.7;line-height:1.4}
 .node-tool{font-size:8.5px;margin-top:5px;padding:2px 7px;border-radius:4px;display:inline-block;font-weight:600;opacity:.8}
 .arr{display:flex;align-items:center;font-size:18px;color:var(--t3);padding:0 4px;flex-shrink:0}
-
-/* Down arrow between layers */
 .flow-down{text-align:center;color:var(--t3);font-size:22px;margin:2px 0;opacity:.5}
 
 /* ===== OUTPUTS ===== */
@@ -83,16 +74,16 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .emoji-lbl{font-size:10.5px;font-weight:600}
 .emoji-desc{font-size:9px;color:var(--t2);margin-top:2px}
 
-/* ===== SEE LOGIC TOOLTIP ===== */
-.logic-wrap{position:relative;display:inline-flex}
-.logic-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;border:1px solid var(--br2);background:transparent;color:var(--t3);font-size:9.5px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all .2s;margin:4px 2px;white-space:nowrap}
-.logic-btn:hover{border-color:#444;color:var(--t2);background:#161616}
-.logic-btn.open{border-color:#444;color:var(--t1);background:#1a1a1a}
+/* ===== SEE LOGIC — HOVER ABOVE ===== */
+.logic-wrap{position:relative;display:inline-flex;margin:6px 2px 0}
+.logic-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;border:1px solid var(--br2);background:transparent;color:var(--t3);font-size:9.5px;font-weight:500;cursor:default;font-family:var(--font);transition:all .2s;white-space:nowrap}
 .logic-btn svg{width:10px;height:10px;opacity:.6}
-.logic-tip{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:280px;max-width:380px;padding:14px 16px;border-radius:var(--r);background:#1a1a1a;border:1px solid #333;font-size:10.5px;line-height:1.6;color:var(--t2);z-index:50;box-shadow:0 12px 40px rgba(0,0,0,.5);animation:tipIn .2s ease}
-.logic-tip.open{display:block}
+.logic-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:0;min-width:300px;max-width:400px;padding:14px 16px;border-radius:var(--r);background:#1e1e1e;border:1px solid #383838;font-size:10.5px;line-height:1.6;color:var(--t2);z-index:50;box-shadow:0 -8px 30px rgba(0,0,0,.5),0 4px 20px rgba(0,0,0,.3);pointer-events:none}
 .logic-tip strong{color:#f0f0f0}
-@keyframes tipIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.logic-tip::after{content:'';position:absolute;bottom:-5px;left:20px;width:10px;height:10px;background:#1e1e1e;border-right:1px solid #383838;border-bottom:1px solid #383838;transform:rotate(45deg)}
+.logic-wrap:hover .logic-btn{border-color:#555;color:var(--t1);background:#1a1a1a}
+.logic-wrap:hover .logic-tip{display:block;animation:tipUp .2s ease}
+@keyframes tipUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
 /* ===== SECTION LABEL ===== */
 .sec-label{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--t3);margin:24px 0 8px;padding-left:2px}
@@ -134,7 +125,6 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .proof{padding:12px 16px;border-radius:var(--r);border:0.5px solid var(--bri);background:var(--bgi);font-size:11px;line-height:1.55;color:var(--info);margin-top:14px}
 .proof strong{font-weight:600}
 
-/* ===== DIVIDER ===== */
 .div{height:1px;background:var(--br2);margin:28px 0}
 
 /* ===== CORNER TOGGLE ===== */
@@ -142,41 +132,69 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 .mode-toggle:hover{border-color:#444;color:var(--t1);background:#1a1a1a}
 .mode-toggle svg{width:14px;height:14px}
 
-/* ===== DESIGN PRINCIPLES (compact) ===== */
+/* ===== DESIGN PRINCIPLES ===== */
 .principles{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .prin{flex:1;min-width:140px;padding:10px 12px;border-radius:var(--r);background:var(--bg1);border:0.5px solid var(--br3)}
 .prin-t{font-size:10.5px;font-weight:600;margin-bottom:3px}
 .prin-d{font-size:9.5px;color:var(--t2);line-height:1.4}
 
-/* ===== PREVIEW WORKFLOW BUTTON ===== */
-.preview-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;border:1px solid var(--bri);background:var(--bgi);color:var(--info);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s;margin:6px 0 16px}
-.preview-btn:hover{background:var(--bri);transform:translateY(-2px);box-shadow:0 4px 12px rgba(96,165,250,.2)}
-.preview-btn svg{width:14px;height:14px}
+/* ===== SEE WORKFLOW — PROMINENT CARD ===== */
+.wf-card{margin:8px 0 20px;padding:22px 24px;border-radius:var(--rl);border:1px solid var(--bri);background:linear-gradient(135deg,#0d1b3e 0%,#172554 50%,#1e3048 100%);cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.wf-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(96,165,250,.12);border-color:#2563eb}
+.wf-card::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(96,165,250,.08) 0%,transparent 70%);pointer-events:none}
+.wf-card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wf-card-top svg{width:20px;height:20px;color:var(--info);flex-shrink:0}
+.wf-card-title{font-size:15px;font-weight:700;color:var(--t1)}
+.wf-card-sub{font-size:11px;color:var(--t2);margin-bottom:14px;line-height:1.5}
+.wf-example{display:flex;align-items:center;gap:0;flex-wrap:wrap;padding:10px 12px;border-radius:var(--r);background:rgba(0,0,0,.3);border:0.5px solid rgba(96,165,250,.15)}
+.wf-ex-step{font-size:9.5px;font-weight:500;color:var(--info);padding:3px 0;white-space:nowrap}
+.wf-ex-arr{color:var(--t3);font-size:12px;padding:0 5px;flex-shrink:0}
+.wf-card-hint{font-size:9px;color:var(--t3);margin-top:10px;text-align:right}
 
 /* ===== WORKFLOW OVERLAY ===== */
-.wf-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
+.wf-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
 .wf-overlay.hidden{display:none}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.wf-panel{background:#141414;border:1px solid #2a2a2a;border-radius:16px;padding:28px 32px;max-width:800px;width:95%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 25px 60px rgba(0,0,0,.5)}
+.wf-panel{background:#121212;border:1px solid #2a2a2a;border-radius:16px;padding:28px 32px;max-width:820px;width:95%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 25px 60px rgba(0,0,0,.6)}
 @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
 .wf-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--t3);padding:4px 8px;border-radius:6px;transition:background .15s;font-family:var(--font)}
 .wf-close:hover{background:#252525;color:var(--t1)}
-.wf-title{font-size:16px;font-weight:600;margin-bottom:4px}
-.wf-sub{font-size:11px;color:var(--t2);margin-bottom:20px;line-height:1.5}
-.wf-section{margin-bottom:16px}
+.wf-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.wf-sub{font-size:11px;color:var(--t2);margin-bottom:6px;line-height:1.5}
+
+/* Example trace in overlay */
+.wf-trace{margin:0 0 20px;padding:12px 14px;border-radius:var(--r);background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.12)}
+.wf-trace-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--info);margin-bottom:8px}
+.wf-trace-flow{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.wf-trace-step{font-size:10px;font-weight:500;padding:4px 8px;border-radius:5px;white-space:nowrap}
+.wf-trace-arr{padding:0 3px;flex-shrink:0;position:relative;width:24px;height:12px;display:flex;align-items:center;justify-content:center}
+.wf-trace-arr svg{width:24px;height:12px;overflow:visible}
+
+/* Animated flowing arrow for trace */
+.flow-line{stroke-dasharray:6 4;animation:flowDash 1s linear infinite}
+@keyframes flowDash{to{stroke-dashoffset:-10}}
+
+.wf-section{margin-bottom:18px}
 .wf-section-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;padding-left:2px}
 .wf-row{display:flex;align-items:center;gap:0;flex-wrap:wrap}
 .wf-node{padding:12px 16px;border-radius:10px;min-width:110px;text-align:center;opacity:0;transform:translateX(-20px);animation:nodeIn .4s ease forwards}
-.wf-node-label{font-size:11.5px;font-weight:600;margin-bottom:2px}
+.wf-node-label{font-size:11.5px;font-weight:700;margin-bottom:2px}
 .wf-node-desc{font-size:9.5px;opacity:.8;line-height:1.4}
-.wf-node-tool{font-size:8.5px;margin-top:4px;opacity:.6;font-weight:500}
+.wf-node-io{font-size:8px;margin-top:6px;opacity:.55;line-height:1.3;font-weight:500}
+.wf-node-io span{display:block}
 @keyframes nodeIn{to{opacity:1;transform:translateX(0)}}
-.wf-arrow{font-size:18px;color:var(--t3);padding:0 6px;flex-shrink:0;opacity:0;animation:arrowIn .3s ease forwards}
+
+/* Animated directional arrows between nodes */
+.wf-flow-arrow{padding:0 4px;flex-shrink:0;opacity:0;animation:arrowIn .3s ease forwards;display:flex;align-items:center}
+.wf-flow-arrow svg{width:32px;height:16px;overflow:visible}
+
+.wf-down-arrow{text-align:center;margin:4px 0;opacity:0;animation:arrowIn .3s ease forwards}
+.wf-down-arrow svg{width:16px;height:24px;overflow:visible}
 @keyframes arrowIn{to{opacity:1}}
-.wf-down{text-align:center;color:var(--t3);font-size:16px;margin:4px 0;opacity:0;animation:arrowIn .3s ease forwards}
+
 .wf-outputs{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 .wf-out{flex:1;min-width:100px;padding:10px 12px;border-radius:8px;text-align:center;opacity:0;animation:nodeIn .4s ease forwards}
-.wf-out-label{font-size:10.5px;font-weight:600}
+.wf-out-label{font-size:10.5px;font-weight:700}
 .wf-out-desc{font-size:9px;opacity:.7;margin-top:2px}
 .wf-divider{height:1px;background:#2a2a2a;margin:16px 0}
 .wf-node.pulse{animation:nodeIn .4s ease forwards,pulse 2s ease-in-out infinite .6s}
@@ -185,7 +203,6 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 </head>
 <body>
 
-<!-- ===== STATIC MODE TOGGLE ===== -->
 <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 <span id="modeLabel">Static View</span>
@@ -193,13 +210,13 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 
 <div class="page">
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <div class="hero rv">
   <h1>Inkitt OS</h1>
   <p>The operating system I would build as Chief of Staff to replace Ali as the human router, so he only exercises judgment on things that genuinely require it.</p>
 </div>
 
-<!-- ===== DESIGN PRINCIPLES ===== -->
+<!-- DESIGN PRINCIPLES -->
 <div class="rv">
   <div class="sec-label">Inkitt OS System Design Principles</div>
   <div class="principles">
@@ -210,28 +227,47 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl prin"><div class="prin-t">Proactive + Reactive</div><div class="prin-d">Morning lists + instant post-meeting pings.</div></div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip"><strong>Lossy at each level:</strong> ICs see all their tasks. Managers see team patterns. Ali sees red flags only.<br><br><strong>Cost-effective:</strong> Build 2 cuts Claude API to a flat rate regardless of meeting volume.<br><br><strong>Familiar tools:</strong> Everyone already uses Slack and Notion. Adoption by default.<br><br><strong>No platform jumping:</strong> Managers get dossiers in Slack. Ali gets his roll-up in Slack or his Office OS.<br><br><strong>Proactive + Reactive:</strong> Morning to-do lists, end-of-day dossiers, pre-briefs. Post-meeting action pings immediately, blocker escalations on SLA breach.</div>
   </div>
 </div>
 
 <div class="div rv"></div>
 
-<!-- ===== BUILD SWITCHER ===== -->
+<!-- BUILD SWITCHER -->
 <div class="switcher rv">
   <button class="sw-btn on" onclick="swBuild(0)">Build 1: Now<small>First 60 days</small></button>
   <button class="sw-btn" onclick="swBuild(1)">Build 2: Next<small>Month 3 to 6</small></button>
 </div>
 
-<!-- ===== BUILD 1 ===== -->
+<!-- ==================== BUILD 1 ==================== -->
 <div class="build on" id="b0">
 
-<!-- Preview Workflow -->
+<!-- SEE WORKFLOW CARD -->
 <div class="rv">
-  <button class="preview-btn" onclick="openWorkflow()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-    Preview Workflow
-  </button>
+  <div class="wf-card" onclick="openWorkflow()">
+    <div class="wf-card-top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <div class="wf-card-title">See Workflow</div>
+    </div>
+    <div class="wf-card-sub">End-to-end visualization of how information flows from meetings to decisions. Each stage shows its input and output.</div>
+    <div class="wf-example">
+      <span class="wf-ex-step" style="color:var(--t2)">Content standup</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step">Promise made</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--warn)">Dependency on Product</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--err)">Missed SLA</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--ok)">Escalation</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--err)">Ali decision</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--t1)">New process</span>
+    </div>
+    <div class="wf-card-hint">Click to see the full animated workflow &#8594;</div>
+  </div>
 </div>
 
 <!-- L0: Collection -->
@@ -244,7 +280,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl chip">GTM</div><div class="fl chip">Data</div><div class="fl chip">BizOps</div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">Every team member across Inkitt, Galatea, and CandyJar runs Granola on their device. Granola shared folders pool by team + auto-push every note to my Notion workspace. No bot joins calls. Captures device audio on any platform (Zoom, Meet, Teams, phone).</div>
   </div>
 </div>
@@ -268,7 +304,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     </div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">When a new meeting note lands in Notion, Claude extracts: commitments, owners, deadlines, team tags, dependencies, and OKR links. Writes each as a structured row in my Notion task database. <strong>Claude does not orchestrate, does not distribute. Transpose only.</strong></div>
   </div>
 </div>
@@ -302,12 +338,12 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl out"><div class="out-t">Blocker Registry</div><div class="out-d">48hr SLA. Auto-escalates.</div></div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">Configured with an instruction page encoding my CoS logic: how I tag teams, assign owners, what constitutes an escalation, my communication standards. I spot-check tagging, verify escalations. <strong>My role: auditor + strategist, not router.</strong></div>
   </div>
 </div>
 
-<!-- Emoji reactions -->
+<!-- IC Touchpoints -->
 <div class="rv" style="margin:12px 0">
   <div class="sec-label" style="color:var(--warn)">IC touchpoints (Slack-native, zero friction)</div>
   <div style="font-size:11px;color:var(--t2);margin-bottom:8px"><strong style="color:var(--t1)">Post-meeting:</strong> Immediate action pings &nbsp;|&nbsp; <strong style="color:var(--t1)">Morning:</strong> Consolidated to-do list</div>
@@ -317,8 +353,8 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl emoji"><div class="emoji-icon">&#x2757;</div><div class="emoji-lbl">Blocked</div><div class="emoji-desc">Adds to blocker registry</div></div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
-    <div class="logic-tip"><strong>Post-meeting ping:</strong> As soon as Claude finishes transposing, Notion Agent detects new rows and pings each teammate in Slack with action items. Each item is a separate message: task, deadline, dependencies, which meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks for each IC (post-meeting + carryover) and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> All detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: immediate post-meeting pings (reactive) + morning list (proactive). ICs never leave Slack.</div>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+    <div class="logic-tip"><strong>Post-meeting ping:</strong> As soon as Claude finishes transposing, Notion Agent detects new rows and pings each teammate in Slack with action items. Each item is a separate message: task, deadline, dependencies, which meeting.<br><br><strong>Morning to-do:</strong> Notion Agent compiles all open tasks for each IC and posts a consolidated daily list.<br><br><strong>Emoji reactions:</strong> All detected natively by Notion Agent's Slack emoji triggers. No custom bot, no middleware. Two touchpoints per day: immediate post-meeting pings (reactive) + morning list (proactive). ICs never leave Slack.</div>
   </div>
 </div>
 <div class="flow-down rv">&#8595;</div>
@@ -375,7 +411,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl out"><div class="out-t">Me</div><div class="out-d">Full view. Identifies strategic initiatives.</div></div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, every completion timestamp, every blocker duration writes to Notion automatically. Over weeks and months, that is a rich dataset of organizational performance. Unlocks at Week 5 from 4+ weeks of accumulated data. Data collected from day one through emoji reactions. No additional effort.</div>
   </div>
 </div>
@@ -401,6 +437,10 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
       <div class="node-d">Fed back to task registry</div>
     </div>
   </div>
+  <div class="logic-wrap">
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+    <div class="logic-tip">Notion Agent pulls relationship data + past meetings, drafts a 1-pager pre-brief. I review and finalize before Ali's meeting. After the meeting, decisions, owners, and deadlines are fed back into the task registry and accountability loop. This is how Ali's meetings produce structured outputs instead of disappearing into the ether.</div>
+  </div>
 </div>
 
 <div class="div rv"></div>
@@ -419,6 +459,10 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl out" style="background:var(--bgw);border-color:var(--brw)"><div class="out-t" style="color:var(--warn)">Gaming</div><div class="out-d"><em>Cross-reference. Org Health detects.</em></div></div>
     <div class="fl out" style="background:var(--bgi);border-color:var(--bri)"><div class="out-t" style="color:var(--info)">Emoji adoption</div><div class="out-d"><em>Zero-friction. Demo Week 3.</em></div></div>
   </div>
+  <div class="logic-wrap">
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+    <div class="logic-tip"><strong>Compounding errors:</strong> AI agents can misclassify or mis-assign. I sit between the agent and Ali as the quality gate. Nothing reaches Ali that I have not verified.<br><br><strong>Alert fatigue:</strong> Each layer filters. ICs see tasks. Managers see patterns. Ali sees red flags. The system is designed to reduce noise at every level.<br><br><strong>Gaming:</strong> If someone marks everything &#x2705; without doing it, Org Health detects the pattern: high completion rate but flat OKR progress. Cross-referencing multiple signals catches anomalies.<br><br><strong>Emoji adoption:</strong> Three reactions (&#x2705; &#x274C; &#x2757;) require zero learning. I demo the full system in Week 3 with real examples from Week 1-2 manual discovery.</div>
+  </div>
 </div>
 
 <!-- Rollout -->
@@ -430,31 +474,49 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     <div class="fl out"><div class="out-t" style="color:var(--ok)">Week 5+: Full OS</div><div class="out-d">All 6 teams. Dossiers. First Org Health Report.</div></div>
   </div>
   <div class="logic-wrap">
-    <button class="logic-btn" onclick="toggleLogic(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip"><strong>Week 1-2:</strong> Attend every standup. Prepare briefs myself using different tools to build intuition on what information is most relevant for managers as I design the dossier dashboard. Build trust with every team lead. Map the real information topology.<br><br><strong>Week 3-4:</strong> Notion Agent live with one team. Validate tagging, test post-meeting pings and emoji reactions, tune instruction page. Data starts accumulating.<br><br><strong>Week 5+:</strong> All 6 teams. Emoji reactions live. Dossiers flowing. First Org Health Report from 4+ weeks of data. I am at the audit + strategy layer.</div>
   </div>
 </div>
 
 <div class="stack rv"><span style="font-weight:600">Build 1 stack:</span><span class="pill">Granola</span><span class="pill">Claude API</span><span class="pill">Notion + Custom Agent</span><span class="pill">Slack</span></div>
-
 </div><!-- /b0 -->
 
-<!-- ===== BUILD 2 ===== -->
+<!-- ==================== BUILD 2 ==================== -->
 <div class="build" id="b1">
 
-<!-- Preview Workflow -->
+<!-- SEE WORKFLOW CARD -->
 <div class="rv">
-  <button class="preview-btn" onclick="openWorkflow()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-    Preview Workflow
-  </button>
+  <div class="wf-card" onclick="openWorkflow()">
+    <div class="wf-card-top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <div class="wf-card-title">See Workflow</div>
+    </div>
+    <div class="wf-card-sub">End-to-end visualization. Quill replaces two layers. Claude's jobs drop from 3 to 2. Costs go flat.</div>
+    <div class="wf-example">
+      <span class="wf-ex-step" style="color:var(--t2)">Content standup</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step">Promise made</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--warn)">Dependency on Product</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--err)">Missed SLA</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--ok)">Escalation</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--err)">Ali decision</span>
+      <span class="wf-ex-arr">&#8594;</span>
+      <span class="wf-ex-step" style="color:var(--t1)">New process</span>
+    </div>
+    <div class="wf-card-hint">Click to see the full animated workflow &#8594;</div>
+  </div>
 </div>
 
 <!-- Why Build 2 -->
 <div class="rv callout callout-ok">
   <strong>Why Build 2?</strong> Claude API costs drop from scaling-with-meetings to flat (7 daily + 1 weekly + 1 monthly). <a href="https://quillmeetings.com/" style="color:var(--ok)">Quill</a> adds local-first privacy. <a href="https://www.getchief.ai/" style="color:var(--ok)">Chief AI</a> gives Ali a purpose-built Office OS.
   <div class="logic-wrap" style="margin-top:6px">
-    <button class="logic-btn" onclick="toggleLogic(this)" style="border-color:var(--brs);color:var(--ok)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
+    <div class="logic-btn" style="border-color:var(--brs);color:var(--ok)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
     <div class="logic-tip">In Build 1, Claude makes an API call for every meeting note (transpose), every dossier (daily), and every Org Health Report (weekly/monthly). Across 6 teams with multiple daily meetings, that is dozens of Claude API calls per day for transposition alone. In Build 2, Quill handles extraction locally on-device. Claude's transpose calls drop to zero. The only remaining API spend is dossiers (7 calls/day) and Org Health Reports (1/week, 1/month). As Inkitt scales from 150 to 400 people, Build 1's costs grow linearly. Build 2's costs stay flat.</div>
   </div>
 </div>
@@ -476,7 +538,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
       <div class="node-d">Via MCP (no API call)</div>
     </div>
   </div>
-  <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:var(--bgw);color:var(--warn);font-size:10px;display:inline-block">Desktop-only. Mobile in production per COO. Granola covers the gap.</div>
+  <div style="margin-top:8px;padding:5px 10px;border-radius:var(--r);background:var(--bgw);color:var(--warn);font-size:10px;display:inline-block">Desktop-only for now &#8212; Yacob (the COO) told me they're shipping mobile as we speak. Granola's iPhone app covers the gap until then.</div>
 </div>
 <div class="flow-down rv">&#8595;</div>
 
@@ -500,7 +562,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 </div>
 <div class="flow-down rv">&#8595;</div>
 
-<!-- L3+L4: Dossier + Org Health -->
+<!-- L3+L4 -->
 <div class="rv layer" style="background:var(--bgs);border-color:var(--brs)">
   <div class="layer-num" style="color:var(--ok)"><span class="dot" style="background:var(--ok)"></span>LAYER 3 + 4 <span class="badge" style="background:var(--bg1);color:var(--ok)">Claude's only jobs in Build 2</span></div>
   <div class="layer-title">Escalation + Org Health Intelligence</div>
@@ -536,6 +598,10 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
     </div>
   </div>
   <div style="font-size:10px;color:var(--err);margin-top:6px">Created by ex-White House and Congress staff for exactly this use case.</div>
+  <div class="logic-wrap">
+    <div class="logic-btn" style="border-color:var(--brd);color:var(--err)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+    <div class="logic-tip"><a href="https://www.getchief.ai/" style="color:var(--err)">Chief AI</a> replaces the manual pre-brief process from Build 1. Instead of Notion Agent drafting and me reviewing, Chief AI handles scheduling intelligence, relationship memory (investors, talent, partners, board), and a priority dashboard. Ali gets a purpose-built interface instead of Slack messages I assemble. This is the only new tool Ali needs to adopt, and only after Build 1 has established trust.</div>
+  </div>
 </div>
 
 <div class="div rv"></div>
@@ -549,8 +615,8 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 <div class="rv callout callout-warn">
   <strong>Steps I am already taking to bring these tools in-house</strong>
   <div class="logic-wrap" style="margin-top:6px">
-    <button class="logic-btn" onclick="toggleLogic(this)" style="border-color:var(--brw);color:var(--warn)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</button>
-    <div class="logic-tip"><strong><a href="https://quillmeetings.com/" style="color:var(--warn)">Quill</a>:</strong> The co-founder and COO, Yacob Berhane, is a friend. I am one of their beta testers and an ambassador, trialing a free Pro version. I was giving Yacob feedback on MCP integration earlier this week. Direct founder access. Mobile version in production per Yacob.<br><br><strong><a href="https://www.getchief.ai/" style="color:var(--warn)">Chief AI</a>:</strong> I know the founder, Shannon, through the GSB network. She is an alum. I have requested a demo and am evaluating both tools in parallel so that by the time I migrate, I have validated the integrations.</div>
+    <div class="logic-btn" style="border-color:var(--brw);color:var(--warn)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>See Logic</div>
+    <div class="logic-tip"><strong><a href="https://quillmeetings.com/" style="color:var(--warn)">Quill</a>:</strong> The co-founder and COO, Yacob Berhane, is a friend. I am one of their beta testers and an ambassador, trialing a free Pro version. I was giving Yacob feedback on MCP integration earlier this week. Direct founder access. He told me they're shipping mobile as we speak.<br><br><strong><a href="https://www.getchief.ai/" style="color:var(--warn)">Chief AI</a>:</strong> I know the founder, Shannon, through the GSB network. She is an alum who has come to speak in class. I have requested a demo and am evaluating both tools in parallel so that by the time I migrate, I have validated the integrations.</div>
   </div>
 </div>
 
@@ -559,16 +625,15 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
   <div class="sec-label">Risks specific to Build 2</div>
   <div class="outputs">
     <div class="fl out" style="background:var(--bgd);border-color:var(--brd)"><div class="out-t" style="color:var(--err)">Early-stage tools</div><div class="out-d"><em>Founder relationships. Shaping, not adopting.</em></div></div>
-    <div class="fl out" style="background:var(--bgw);border-color:var(--brw)"><div class="out-t" style="color:var(--warn)">Desktop-only</div><div class="out-d"><em>Mobile in production. Granola gap-fills.</em></div></div>
+    <div class="fl out" style="background:var(--bgw);border-color:var(--brw)"><div class="out-t" style="color:var(--warn)">Desktop-only</div><div class="out-d"><em>Yacob says mobile is shipping now. Granola gap-fills.</em></div></div>
     <div class="fl out" style="background:var(--bgi);border-color:var(--bri)"><div class="out-t" style="color:var(--info)">Ali adoption</div><div class="out-d"><em>Introduce after Build 1 trust.</em></div></div>
   </div>
 </div>
 
 <div class="stack rv"><span style="font-weight:600">Build 2 stack:</span><span class="pill"><a href="https://quillmeetings.com/">Quill</a></span><span class="pill">Notion + Agent</span><span class="pill">Claude API</span><span class="pill">Slack</span><span class="pill"><a href="https://www.getchief.ai/">Chief AI</a></span></div>
-
 </div><!-- /b1 -->
 
-<!-- ===== COMPARISON ===== -->
+<!-- COMPARISON -->
 <div class="div rv"></div>
 <div class="rv">
 <div class="cmp">
@@ -577,7 +642,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 <tr style="border-bottom:1px solid var(--br2)">
 <td class="hd"></td><td class="hd" style="color:var(--warn)">Build 1: Now</td><td class="hd" style="color:var(--ok)">Build 2: Next</td>
 </tr>
-<tr><td class="hd">Capture</td><td>Granola (cloud)</td><td><a href="https://quillmeetings.com/">Quill</a> (local, mobile in prod)</td></tr>
+<tr><td class="hd">Capture</td><td>Granola (cloud)</td><td><a href="https://quillmeetings.com/">Quill</a> (local, mobile shipping)</td></tr>
 <tr><td class="hd">Extraction</td><td>Claude to Notion</td><td><a href="https://quillmeetings.com/">Quill</a> via MCP</td></tr>
 <tr><td class="hd">Orchestration</td><td>Notion Agent</td><td>Same</td></tr>
 <tr><td class="hd">IC experience</td><td>Pings + morning list + 3 emoji</td><td>Same</td></tr>
@@ -599,7 +664,7 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 
 </div><!-- /page -->
 
-<!-- ===== WORKFLOW OVERLAY ===== -->
+<!-- WORKFLOW OVERLAY -->
 <div class="wf-overlay hidden" id="wfOverlay" onclick="closeWorkflow()">
 <div class="wf-panel" onclick="event.stopPropagation()">
 <button class="wf-close" onclick="closeWorkflow()">&times;</button>
@@ -610,102 +675,90 @@ body.static .rv{opacity:1!important;transform:none!important;transition:none!imp
 </div>
 
 <script>
-// Build switcher
 function swBuild(n){
   document.querySelectorAll('.build').forEach(function(b,i){b.classList.toggle('on',i===n)});
   document.querySelectorAll('.sw-btn').forEach(function(t,i){t.classList.toggle('on',i===n)});
-  // Re-trigger reveal for newly visible elements
   setTimeout(function(){initReveal()},50);
 }
 
-// See Logic tooltips
-function toggleLogic(btn){
-  var tip=btn.nextElementSibling;
-  var wasOpen=tip.classList.contains('open');
-  // Close all open tooltips
-  document.querySelectorAll('.logic-tip.open').forEach(function(t){t.classList.remove('open')});
-  document.querySelectorAll('.logic-btn.open').forEach(function(b){b.classList.remove('open')});
-  if(!wasOpen){tip.classList.add('open');btn.classList.add('open')}
-}
-// Close tooltips on outside click
-document.addEventListener('click',function(e){
-  if(!e.target.closest('.logic-wrap')){
-    document.querySelectorAll('.logic-tip.open').forEach(function(t){t.classList.remove('open')});
-    document.querySelectorAll('.logic-btn.open').forEach(function(b){b.classList.remove('open')});
-  }
-});
-
-// Static/Interactive mode toggle
 function toggleMode(){
   document.body.classList.toggle('static');
-  var isStatic=document.body.classList.contains('static');
-  document.getElementById('modeLabel').textContent=isStatic?'Interactive View':'Static View';
-  if(isStatic){
-    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('show')});
-  }else{
-    document.querySelectorAll('.rv').forEach(function(el){el.classList.remove('show')});
-    initReveal();
-  }
+  var s=document.body.classList.contains('static');
+  document.getElementById('modeLabel').textContent=s?'Interactive View':'Static View';
+  if(s){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('show')})}
+  else{document.querySelectorAll('.rv').forEach(function(el){el.classList.remove('show')});initReveal()}
 }
 
-// Scroll reveal with IntersectionObserver
 var observer;
 function initReveal(){
-  if(observer) observer.disconnect();
+  if(observer)observer.disconnect();
   observer=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-      }
-    });
+    entries.forEach(function(entry){if(entry.isIntersecting)entry.target.classList.add('show')});
   },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv:not(.show)').forEach(function(el){observer.observe(el)});
 }
 initReveal();
 
-// Stagger children in same container
-document.querySelectorAll('.outputs, .insights, .principles, .emoji-row, .pool').forEach(function(container){
-  container.querySelectorAll('.fl').forEach(function(child,i){
-    child.style.transitionDelay=(i*0.06)+'s';
-  });
+document.querySelectorAll('.outputs,.insights,.principles,.emoji-row,.pool').forEach(function(c){
+  c.querySelectorAll('.fl').forEach(function(ch,i){ch.style.transitionDelay=(i*0.06)+'s'});
 });
 
-// Workflow overlay
 function closeWorkflow(){document.getElementById('wfOverlay').classList.add('hidden')}
+
+function flowArrowSVG(delay,color){
+  return '<div class="wf-flow-arrow" style="animation-delay:'+delay+'s"><svg viewBox="0 0 32 16"><line x1="2" y1="8" x2="26" y2="8" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" class="flow-line" stroke-linecap="round"/><polyline points="22,4 28,8 22,12" fill="none" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+}
+
+function downArrowSVG(delay,color){
+  return '<div class="wf-down-arrow" style="animation-delay:'+delay+'s"><svg viewBox="0 0 16 24"><line x1="8" y1="2" x2="8" y2="18" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" class="flow-line" stroke-linecap="round"/><polyline points="4,14 8,20 12,14" fill="none" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+}
+
+function traceArrowSVG(color){
+  return '<div class="wf-trace-arr"><svg viewBox="0 0 24 12"><line x1="1" y1="6" x2="18" y2="6" stroke="'+(color||'#6b7280')+'" stroke-width="1.2" class="flow-line" stroke-linecap="round"/><polyline points="15,3 20,6 15,9" fill="none" stroke="'+(color||'#6b7280')+'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
+}
 
 function openWorkflow(){
   var activeTab=document.querySelector('.sw-btn.on')===document.querySelectorAll('.sw-btn')[0]?0:1;
-  var o=document.getElementById('wfOverlay');
-  o.classList.remove('hidden');
+  document.getElementById('wfOverlay').classList.remove('hidden');
+
+  var exSteps=[
+    {text:'Content standup',color:'#9aa0a6'},
+    {text:'Promise made',color:'#60a5fa'},
+    {text:'Dependency on Product',color:'#fbbf24'},
+    {text:'Missed SLA (48hr)',color:'#f87171'},
+    {text:'Escalation',color:'#34d399'},
+    {text:'Ali decision',color:'#f87171'},
+    {text:'New process / staffing',color:'#e8eaed'}
+  ];
 
   var b1={
     title:'Build 1 Workflow',
-    sub:'Granola \u2192 Claude transposes \u2192 Notion Agent orchestrates \u2192 Claude dossiers + Org Health',
+    sub:'Granola captures \u2192 Claude transposes \u2192 Notion Agent orchestrates \u2192 Claude generates dossiers + Org Health',
     sections:[
       {label:'Layer 0: Collection',color:'#9aa0a6',nodes:[
-        {name:'Granola',desc:'Device audio, all 6 teams',tool:'No bot',bg:'#1a1a1a',color:'#9aa0a6',delay:0}
+        {name:'Granola',desc:'Device audio capture',io_in:'Meetings (all 6 teams)',io_out:'Raw transcripts',bg:'#1a1a1a',color:'#9aa0a6',delay:0}
       ]},
       {label:'Layer 1: Transpose',color:'#60a5fa',nodes:[
-        {name:'Claude API',desc:'Extract commitments, owners, deadlines',tool:'Job 1 of 3',bg:'#172554',color:'#60a5fa',delay:.15},
-        {name:'Notion DB',desc:'Structured rows',tool:'Database',bg:'#172554',color:'#60a5fa',delay:.3}
+        {name:'Claude API',desc:'Extract & structure',io_in:'Raw transcripts',io_out:'Structured commitments',bg:'#172554',color:'#60a5fa',delay:.2},
+        {name:'Notion DB',desc:'Task rows',io_in:'Structured data',io_out:'Queryable database',bg:'#172554',color:'#60a5fa',delay:.4}
       ]},
       {label:'Layer 2: Execution Tracking',color:'#fbbf24',nodes:[
-        {name:'Notion Agent',desc:'Tag, assign, track, flag',tool:'24/7',bg:'#422006',color:'#fbbf24',delay:.4},
-        {name:'Slack',desc:'Pings + to-dos + emoji',tool:'\u2705 \u274C \u2757',bg:'#422006',color:'#fbbf24',delay:.55}
+        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows',io_out:'Assigned actions + status',bg:'#422006',color:'#fbbf24',delay:.55},
+        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'#422006',color:'#fbbf24',delay:.7}
       ]},
       {label:'Layer 3: Manager Dossier',color:'#34d399',nodes:[
-        {name:'Claude API',desc:'Visual team report',tool:'Job 2 of 3',bg:'#052e16',color:'#34d399',delay:.65}
+        {name:'Claude API',desc:'Visual team report',io_in:'Notion snapshot (done/open/blocked)',io_out:'30-sec scannable dossier',bg:'#052e16',color:'#34d399',delay:.85}
       ]},
-      {label:'Layer 4: Org Health',color:'#e8eaed',nodes:[
-        {name:'Notion Agent',desc:'Pattern scan',tool:'Weekly/monthly',bg:'#1a1a1a',color:'#9aa0a6',delay:.75},
-        {name:'Claude API',desc:'Org Health Report',tool:'Job 3 of 3',bg:'#172554',color:'#60a5fa',delay:.9}
+      {label:'Layer 4: Org Health Intelligence',color:'#e8eaed',nodes:[
+        {name:'Notion Agent',desc:'Pattern scan',io_in:'Weeks of emoji + completion data',io_out:'Anomalies + trends',bg:'#1a1a1a',color:'#9aa0a6',delay:1},
+        {name:'Claude API',desc:'Org Health Report',io_in:'Pattern findings',io_out:'Narrative with recommendations',bg:'#172554',color:'#60a5fa',delay:1.15}
       ]}
     ],
     outputs:[
-      {name:'ICs',desc:'Slack pings + to-dos',bg:'#052e16',color:'#34d399',delay:1},
-      {name:'Managers',desc:'Visual dossier',bg:'#052e16',color:'#34d399',delay:1.1},
-      {name:'Team Leads',desc:'Weekly Org Health',bg:'#172554',color:'#60a5fa',delay:1.2},
-      {name:"CEO's Office",desc:'Red flags + monthly Org Health',bg:'#450a0a',color:'#f87171',delay:1.3}
+      {name:'ICs',desc:'Slack pings + to-dos',bg:'#052e16',color:'#34d399',delay:1.3},
+      {name:'Managers',desc:'Visual dossier + weekly Org Health',bg:'#052e16',color:'#34d399',delay:1.4},
+      {name:'Team Leads',desc:'Individual-level patterns',bg:'#172554',color:'#60a5fa',delay:1.5},
+      {name:"CEO's Office",desc:'Red flags + monthly structural',bg:'#450a0a',color:'#f87171',delay:1.6}
     ]
   };
 
@@ -714,25 +767,25 @@ function openWorkflow(){
     sub:'Quill captures + extracts locally \u2192 Notion Agent orchestrates \u2192 Claude dossiers + Org Health \u2192 Chief AI powers CEO\'s Office',
     sections:[
       {label:'Layer 0+1: Capture + Extract (unified)',color:'#9aa0a6',nodes:[
-        {name:'Quill',desc:'Local capture + extract',tool:'Replaces Granola + Claude',bg:'#1a1a1a',color:'#9aa0a6',delay:0},
-        {name:'Notion DB',desc:'Via MCP',tool:'Local-first',bg:'#172554',color:'#60a5fa',delay:.15}
+        {name:'Quill',desc:'Local capture + extract',io_in:'Meetings (all 6 teams)',io_out:'Structured commitments (local)',bg:'#1a1a1a',color:'#9aa0a6',delay:0},
+        {name:'Notion DB',desc:'Via MCP',io_in:'MCP structured data',io_out:'Queryable database',bg:'#172554',color:'#60a5fa',delay:.2}
       ]},
       {label:'Layer 2: Execution Tracking (same)',color:'#fbbf24',nodes:[
-        {name:'Notion Agent',desc:'Tag, assign, track, flag',tool:'24/7',bg:'#422006',color:'#fbbf24',delay:.3},
-        {name:'Slack',desc:'Pings + to-dos + emoji',tool:'\u2705 \u274C \u2757',bg:'#422006',color:'#fbbf24',delay:.45}
+        {name:'Notion Agent',desc:'Tag, assign, track, flag',io_in:'Task rows (richer from Quill)',io_out:'Assigned actions + status',bg:'#422006',color:'#fbbf24',delay:.35},
+        {name:'Slack',desc:'Pings + emoji reactions',io_in:'Assigned actions',io_out:'\u2705 done / \u274C remove / \u2757 blocked',bg:'#422006',color:'#fbbf24',delay:.5}
       ]},
       {label:'Layer 3+4: Dossier + Org Health',color:'#34d399',nodes:[
-        {name:'Claude API',desc:'Dossier + Org Health',tool:'2 jobs (down from 3)',bg:'#052e16',color:'#34d399',delay:.55}
+        {name:'Claude API',desc:'Dossier + Org Health Report',io_in:'Notion snapshot + pattern data',io_out:'Visual reports + recommendations',bg:'#052e16',color:'#34d399',delay:.65}
       ]},
       {label:"CEO's Office OS",color:'#f87171',nodes:[
-        {name:'Chief AI',desc:'Pre-briefs, intel, dashboard',tool:'Purpose-built',bg:'#450a0a',color:'#f87171',delay:.65}
+        {name:'Chief AI',desc:'Pre-briefs, intel, dashboard',io_in:'Calendar + relationship data + Org Health',io_out:'Decision-ready 1-pagers',bg:'#450a0a',color:'#f87171',delay:.8}
       ]}
     ],
     outputs:[
-      {name:'ICs',desc:'Same Slack experience',bg:'#052e16',color:'#34d399',delay:.8},
-      {name:'Managers',desc:'Same dossier',bg:'#052e16',color:'#34d399',delay:.9},
-      {name:'Team Leads',desc:'Org Health (cheaper)',bg:'#172554',color:'#60a5fa',delay:1},
-      {name:"CEO's Office",desc:'Chief AI OS',bg:'#450a0a',color:'#f87171',delay:1.1}
+      {name:'ICs',desc:'Same Slack experience',bg:'#052e16',color:'#34d399',delay:.95},
+      {name:'Managers',desc:'Same dossier (cheaper)',bg:'#052e16',color:'#34d399',delay:1.05},
+      {name:'Team Leads',desc:'Org Health (cheaper)',bg:'#172554',color:'#60a5fa',delay:1.15},
+      {name:"CEO's Office",desc:'Chief AI OS',bg:'#450a0a',color:'#f87171',delay:1.25}
     ]
   };
 
@@ -740,17 +793,31 @@ function openWorkflow(){
   document.getElementById('wfTitle').textContent=data.title;
   document.getElementById('wfSub').textContent=data.sub;
 
-  var html='';
+  // Build example trace
+  var traceHtml='<div class="wf-trace"><div class="wf-trace-label">Example: how a single commitment flows through the system</div><div class="wf-trace-flow">';
+  exSteps.forEach(function(s,i){
+    traceHtml+='<div class="wf-trace-step" style="color:'+s.color+'">'+s.text+'</div>';
+    if(i<exSteps.length-1) traceHtml+=traceArrowSVG(s.color);
+  });
+  traceHtml+='</div></div>';
+
+  var html=traceHtml;
+
   data.sections.forEach(function(s,si){
     html+='<div class="wf-section"><div class="wf-section-label" style="color:'+s.color+'">'+s.label+'</div><div class="wf-row">';
     s.nodes.forEach(function(n,ni){
-      if(ni>0) html+='<div class="wf-arrow" style="animation-delay:'+(n.delay-.05)+'s">&rarr;</div>';
-      html+='<div class="wf-node pulse" style="background:'+n.bg+';color:'+n.color+';border:1px solid '+n.color+'22;animation-delay:'+n.delay+'s"><div class="wf-node-label">'+n.name+'</div><div class="wf-node-desc">'+n.desc+'</div><div class="wf-node-tool">'+n.tool+'</div></div>';
+      if(ni>0) html+=flowArrowSVG(n.delay-.05,s.color);
+      html+='<div class="wf-node pulse" style="background:'+n.bg+';color:'+n.color+';border:1px solid '+n.color+'22;animation-delay:'+n.delay+'s">';
+      html+='<div class="wf-node-label">'+n.name+'</div>';
+      html+='<div class="wf-node-desc">'+n.desc+'</div>';
+      html+='<div class="wf-node-io"><span style="opacity:.7">IN:</span> '+n.io_in+'</div>';
+      html+='<div class="wf-node-io"><span style="opacity:.7">OUT:</span> '+n.io_out+'</div>';
+      html+='</div>';
     });
     html+='</div>';
     if(si<data.sections.length-1){
       var d=s.nodes[s.nodes.length-1].delay;
-      html+='<div class="wf-down" style="animation-delay:'+(d+.1)+'s">&darr;</div>';
+      html+=downArrowSVG(d+.08,data.sections[si+1].color);
     }
     html+='</div>';
   });
