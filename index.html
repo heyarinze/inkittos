@@ -469,7 +469,7 @@ Return results in structured JSON.</pre>
 <div class="rv layer">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
   <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2</div>
-  <div class="layer-title">Commitments &#8594; Blocker Tracking</div>
+  <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
   <div class="layer-brief">Notion Agent orchestrates 24/7. Tags, assigns, tracks blockers (48hr SLA), flags OKR status.</div>
   <div class="flow">
     <div class="fl node">
@@ -524,7 +524,7 @@ Return results in structured JSON.</pre>
 <div class="rv layer">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 hour</div>
   <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude job 2 of 3</span></div>
-  <div class="layer-title">Blocker Tracking &#8594; Escalation</div>
+  <div class="layer-title">Blocker/OKR Tracking &#8594; Escalation</div>
   <div class="layer-brief">End-of-day visual dossier. Managers scan in 30 seconds. Ali gets red flags only.</div>
   <div class="flow">
     <div class="fl node">
@@ -545,7 +545,7 @@ Return results in structured JSON.</pre>
 <div class="rv layer">
   <div class="build-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 work day</div>
   <div class="layer-num" style="color:var(--t1)"><span class="dot" style="color:var(--t1)">&#9733;</span>LAYER 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--info)">Claude job 3 of 3</span> <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Unlocks Week 7+</span></div>
-  <div class="layer-title">Escalation &#8594; OKR Intelligence</div>
+  <div class="layer-title">Escalation &#8594; Org Intelligence</div>
   <div class="layer-brief">The daily flow is the operational heartbeat. This layer is the strategic nervous system. Every emoji reaction, every completion timestamp, every blocker duration writes to Notion automatically. Over weeks and months, that is a rich dataset of organizational performance. The Notion Agent runs a weekly and monthly pattern scan, then Claude generates a narrative OKR Report.</div>
   <div class="flow">
     <div class="fl node">
@@ -717,7 +717,7 @@ Return results in structured JSON.</pre>
 <!-- L2 -->
 <div class="rv layer">
   <div class="layer-num" style="color:var(--warn)"><span class="dot" style="color:var(--warn)">&#9733;</span>LAYER 2 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--warn)">Same as Build 1</span></div>
-  <div class="layer-title">Commitments &#8594; Blocker Tracking</div>
+  <div class="layer-title">Commitments &#8594; Blocker/OKR Tracking</div>
   <div class="layer-brief">Same Notion Agent, same 24/7 orchestration, same emoji reactions. Richer input from <a href="https://quillmeetings.com/">Quill's</a> MCP output.</div>
   <div class="flow">
     <div class="fl node">
@@ -737,7 +737,7 @@ Return results in structured JSON.</pre>
 <!-- L3+L4 -->
 <div class="rv layer">
   <div class="layer-num" style="color:var(--ok)"><span class="dot" style="color:var(--ok)">&#9733;</span>LAYER 3 + 4 <span class="badge" style="background:rgba(255,255,255,.05);color:var(--ok)">Claude's only jobs in Build 2</span></div>
-  <div class="layer-title">Escalation + OKR Intelligence</div>
+  <div class="layer-title">Escalation + Org Intelligence</div>
   <div class="layer-brief">Same dossier + OKR Report. But cheaper: Claude only reports, doesn't extract. 2 jobs down from 3.</div>
   <div class="flow">
     <div class="fl node">
@@ -915,7 +915,7 @@ function openWorkflow(){
       {label:'Layer 3: Manager Dossier',color:'#34d399',nodes:[
         {name:'Claude API',desc:'Visual team report',io_in:'Notion snapshot (done/open/blocked)',io_out:'30-sec scannable dossier',bg:'#052e16',color:'#34d399',delay:.85}
       ]},
-      {label:'Layer 4: OKR Intelligence',color:'#e8eaed',nodes:[
+      {label:'Layer 4: Org Intelligence',color:'#e8eaed',nodes:[
         {name:'Notion Agent',desc:'Pattern scan',io_in:'Weeks of emoji + completion data',io_out:'Anomalies + trends',bg:'#1a1a1a',color:'#9aa0a6',delay:1},
         {name:'Claude API',desc:'OKR Report',io_in:'Pattern findings',io_out:'Narrative with recommendations',bg:'#172554',color:'#60a5fa',delay:1.15}
       ]}
