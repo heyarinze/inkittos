@@ -138,8 +138,9 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
   .wf-flow-arrow{transform:rotate(90deg);padding:2px 0;align-self:center}
   .wf-flow-arrow svg{width:24px;height:12px}
 
-  /* Logic tooltips */
-  .logic-tip{min-width:0;max-width:calc(100vw - 40px);left:-10px}
+  /* Logic tooltips — show below on mobile, not above */
+  .logic-tip{min-width:0;max-width:calc(100vw - 40px);left:0;right:auto;bottom:auto;top:calc(100% + 8px);position:absolute}
+  .logic-tip::after{bottom:auto;top:-5px;transform:rotate(225deg)}
 
   /* Proof point */
   .proof{padding:10px 12px;font-size:13px}
@@ -241,6 +242,9 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
 .logic-tip::after{content:'';position:absolute;bottom:-5px;left:20px;width:10px;height:10px;background:rgba(30,30,30,.97);border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);transform:rotate(45deg)}
 .logic-wrap:hover .logic-btn{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85);background:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.06) 100%);box-shadow:0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1),0 0 12px rgba(96,165,250,.06)}
 .logic-wrap:hover .logic-tip{display:block;animation:tipUp .2s ease}
+/* Tap-to-toggle for touch devices */
+.logic-wrap.open .logic-btn{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85);background:linear-gradient(135deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.06) 100%)}
+.logic-wrap.open .logic-tip{display:block;pointer-events:auto;animation:tipUp .2s ease}
 @keyframes tipUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
 /* SECTION LABEL */
@@ -1074,6 +1078,23 @@ function initReveal(){
 }
 initReveal();
 
+/* Tap-to-toggle See Logic on touch devices */
+(function(){
+  var isTouchDevice='ontouchstart' in window||navigator.maxTouchPoints>0;
+  if(!isTouchDevice) return;
+  document.addEventListener('click',function(e){
+    var wrap=e.target.closest('.logic-wrap');
+    // Close all other open tooltips
+    document.querySelectorAll('.logic-wrap.open').forEach(function(el){
+      if(el!==wrap) el.classList.remove('open');
+    });
+    if(wrap){
+      e.preventDefault();
+      e.stopPropagation();
+      wrap.classList.toggle('open');
+    }
+  });
+})();
 
 function closeWorkflow(){document.getElementById('wfOverlay').classList.add('hidden')}
 
