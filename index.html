@@ -53,9 +53,12 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
 .prompt-panel pre{font-size:10.5px;line-height:1.6;color:var(--t2);white-space:pre-wrap;word-break:break-word;background:rgba(255,255,255,.03);border:1px solid var(--br2);border-radius:8px;padding:16px;font-family:'SF Mono',Monaco,Consolas,monospace;max-height:60vh;overflow-y:auto}
 .prompt-panel pre::-webkit-scrollbar{width:5px}.prompt-panel pre::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
 
-.origin-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:var(--t1);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all .2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(255,255,255,.04)}
-.origin-btn:hover{border-color:rgba(255,255,255,.3);color:#fff;background:rgba(255,255,255,.12);box-shadow:0 4px 16px rgba(255,255,255,.06)}
-.origin-btn svg{width:12px;height:12px;opacity:.7}
+.wb-inline{display:flex;align-items:flex-end;gap:8px;margin:18px auto 0;justify-content:center;cursor:pointer;max-width:360px}
+.wb-inline-arrow{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+.wb-inline-label{font-size:11px;color:rgba(255,255,255,.4);font-style:italic;white-space:nowrap;letter-spacing:.3px}
+.wb-inline-img{width:140px;border-radius:8px;border:1px solid rgba(255,255,255,.1);opacity:.6;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.wb-inline:hover .wb-inline-img{opacity:1;border-color:rgba(255,255,255,.25);box-shadow:0 8px 30px rgba(0,0,0,.6);transform:scale(1.03)}
+@media(max-width:480px){.wb-inline-img{width:110px}.wb-inline-arrow svg{width:40px}}
 
 /* Whiteboard modal */
 .wb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1100;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
@@ -315,10 +318,13 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
   <h1>Inkitt OS</h1>
   <div style="font-size:15px;color:var(--t2);margin-bottom:8px;font-style:italic;font-family:'Lora',serif">by <a href="https://www.heyarinze.com" target="_blank" style="color:var(--t1);text-decoration:underline;text-underline-offset:2px">Arinze Obiezue</a></div>
   <p>The operating system I would build as Chief of Staff to replace Ali as the human router, so he only exercises judgment on things that genuinely require it.</p>
-  <button class="origin-btn" onclick="document.getElementById('wbOverlay').classList.remove('hidden')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7.07 17 2.51-7.39L21 11.07z"/></svg>
-    <span style="color:var(--err)">See where the thinking started (original whiteboard)</span>
-  </button>
+  <div class="wb-inline" onclick="document.getElementById('wbOverlay').classList.remove('hidden')">
+    <div class="wb-inline-arrow">
+      <svg width="60" height="32" viewBox="0 0 60 32" fill="none"><path d="M2 28 C10 28, 15 10, 30 8 C45 6, 50 4, 56 4" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" fill="none" stroke-dasharray="3 3"/><path d="M52 1 L58 4 L52 7" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span class="wb-inline-label">where the thinking started</span>
+    </div>
+    <img src="whiteboard.jpg" alt="Original whiteboard session" class="wb-inline-img">
+  </div>
 </div>
 
 <!-- DESIGN PRINCIPLES -->
