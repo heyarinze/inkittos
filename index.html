@@ -60,6 +60,107 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
 .wb-inline:hover .wb-inline-img{opacity:1;border-color:rgba(255,255,255,.25);box-shadow:0 8px 30px rgba(0,0,0,.6);transform:scale(1.03)}
 @media(max-width:480px){.wb-inline-img{width:110px}.wb-inline-arrow svg{width:40px}}
 
+/* ===== MOBILE OPTIMIZATION ===== */
+@media(max-width:600px){
+  .page{padding:24px 14px 60px}
+  .hero{padding:28px 0 16px}
+  .hero h1{font-size:26px}
+  .hero p{font-size:14px;padding:0 4px}
+
+  /* Timeline */
+  .tl-entry{gap:14px;padding-bottom:32px}
+  .tl-mobile-title{font-size:18px;margin-bottom:8px}
+  .tl-body{min-width:0;overflow:hidden}
+
+  /* Layer cards */
+  .layer{padding:14px 14px;margin:0 0 12px}
+  .layer-title{font-size:17px}
+  .layer-brief{font-size:13px}
+  .build-time{font-size:10px;top:10px;right:10px}
+
+  /* Flow nodes */
+  .flow{flex-direction:column;gap:0}
+  .node{min-width:0;width:100%}
+  .arr{transform:rotate(90deg);padding:2px 0;font-size:16px}
+
+  /* Outputs/insights grids */
+  .outputs{flex-direction:column;gap:6px}
+  .outputs .out{min-width:0;width:100%}
+  .insights{flex-direction:column;gap:6px}
+  .insights .ins{min-width:0;width:100%}
+
+  /* Emoji row */
+  .emoji-row{gap:4px}
+  .emoji{min-width:0;padding:8px 6px}
+  .emoji-icon{font-size:18px}
+  .emoji-lbl{font-size:11px}
+  .emoji-desc{font-size:10px}
+
+  /* Responsibility table */
+  .resp-row{flex-direction:column}
+  .resp-who{width:100%;padding:8px 12px 2px}
+  .resp-what{padding:2px 12px 8px}
+
+  /* Pool chips */
+  .pool{gap:4px}
+  .chip{min-width:0;padding:5px 8px;font-size:11px}
+
+  /* Principles */
+  .principles{gap:4px}
+  .prin{min-width:0;flex-basis:calc(50% - 4px)}
+
+  /* OKR database rows — stack label/badge/desc */
+  .layer [style*="display:flex;gap:10px;align-items:baseline"]{flex-wrap:wrap;gap:4px 8px}
+  .layer [style*="min-width:140px"]{min-width:100px !important}
+
+  /* Comparison table */
+  .cmp{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cmp table{font-size:11px;min-width:460px}
+  .cmp td{padding:5px 6px}
+
+  /* Switcher */
+  .switcher{max-width:100%}
+  .sw-btn{font-size:13px;padding:12px 8px}
+  .sw-btn small{font-size:11px}
+
+  /* Workflow card */
+  .wf-card{padding:16px 16px}
+  .wf-card-sub{font-size:13px}
+  .wf-example{flex-wrap:wrap;gap:2px 0;padding:8px 10px}
+  .wf-ex-step{font-size:11px}
+  .wf-ex-arr{font-size:12px;padding:0 3px}
+
+  /* Workflow overlay */
+  .wf-panel{padding:20px 16px}
+  .wf-title{font-size:16px}
+  .wf-row{flex-direction:column;gap:0;align-items:stretch}
+  .wf-node{min-width:0;width:100%}
+  .wf-flow-arrow{transform:rotate(90deg);padding:2px 0;align-self:center}
+  .wf-flow-arrow svg{width:24px;height:12px}
+
+  /* Logic tooltips */
+  .logic-tip{min-width:0;max-width:calc(100vw - 40px);left:-10px}
+
+  /* Proof point */
+  .proof{padding:10px 12px;font-size:13px}
+
+  /* Callout */
+  .callout{padding:10px 12px;font-size:13px}
+
+  /* Sec label */
+  .sec-label{font-size:11px}
+
+  /* Prompt panel */
+  .prompt-panel{padding:18px 16px}
+
+  /* Steps box */
+  .stack{font-size:11px;gap:4px}
+  .pill{padding:2px 6px;font-size:11px}
+
+  /* Blocker resolution 3 buckets — stack */
+  .outputs [style*="border-left:2px solid #4ade80"]{min-width:0;width:100%}
+}
+
 /* Whiteboard modal */
 .wb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:1100;display:flex;align-items:center;justify-content:center;animation:fadeIn .25s ease}
 .wb-overlay.hidden{display:none}
