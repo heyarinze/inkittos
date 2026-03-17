@@ -397,11 +397,11 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
   <a href="#nav-failures" class="nav-b1">Failure Modes</a>
   <a href="#nav-rollout" class="nav-b1">90-Day Rollout</a>
   <div class="nav-group" id="navB2Label" style="display:none">Build 2</div>
-  <a href="#nav-b2-l01" class="nav-b2" style="display:none">L0+1 Quill</a>
-  <a href="#nav-b2-l2" class="nav-b2" style="display:none">L2 Tracking</a>
-  <a href="#nav-b2-l34" class="nav-b2" style="display:none">L3+4 Dossier + OKR</a>
-  <a href="#nav-b2-ceo" class="nav-b2" style="display:none">CEO's Office OS</a>
   <a href="#nav-steps" class="nav-b2" style="display:none">Steps Taken</a>
+  <a href="#nav-b2-l01" class="nav-b2" style="display:none">L0+1 Collection + Transposing</a>
+  <a href="#nav-b2-l2" class="nav-b2" style="display:none">L2 Tracking</a>
+  <a href="#nav-b2-l34" class="nav-b2" style="display:none">L3+4 Escalation + Intelligence</a>
+  <a href="#nav-b2-ceo" class="nav-b2" style="display:none">CEO's Office</a>
   <div class="nav-group">Compare</div>
   <a href="#nav-comparison">Build 1 vs 2</a>
 </nav>
@@ -1107,6 +1107,30 @@ initReveal();
 })();
 
 function closeWorkflow(){document.getElementById('wfOverlay').classList.add('hidden')}
+
+/* Scroll-spy: highlight active nav link */
+(function(){
+  var navLinks=document.querySelectorAll('.side-nav a[href^="#"]');
+  if(!navLinks.length) return;
+  var sections=[];
+  navLinks.forEach(function(link){
+    var id=link.getAttribute('href').slice(1);
+    var el=document.getElementById(id);
+    if(el) sections.push({el:el,link:link});
+  });
+  var spyObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var match=sections.find(function(s){return s.el===entry.target});
+      if(!match) return;
+      if(entry.isIntersecting){
+        // Remove active from all visible nav links
+        navLinks.forEach(function(l){l.classList.remove('active')});
+        match.link.classList.add('active');
+      }
+    });
+  },{threshold:0.1,rootMargin:'-80px 0px -60% 0px'});
+  sections.forEach(function(s){spyObserver.observe(s.el)});
+})();
 
 function flowArrowSVG(delay,color){
   return '<div class="wf-flow-arrow" style="animation-delay:'+delay+'s"><svg viewBox="0 0 32 16"><line x1="2" y1="8" x2="26" y2="8" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" class="flow-line" stroke-linecap="round"/><polyline points="22,4 28,8 22,12" fill="none" stroke="'+(color||'#6b7280')+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>';
