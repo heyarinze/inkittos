@@ -172,6 +172,11 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
 .wb-sub{font-size:13px;color:var(--t3);margin-bottom:16px}
 .wb-img{width:100%;border-radius:8px;display:block}
 
+/* Steps toggle */
+.steps-toggle summary::-webkit-details-marker{display:none}
+.steps-toggle summary::marker{display:none;content:''}
+.steps-toggle[open] summary svg{transform:rotate(90deg)}
+
 /* BUILD SWITCHER */
 .switcher{display:flex;gap:0;margin:0 auto 30px;max-width:520px;position:sticky;top:12px;z-index:100}
 .sw-btn{flex:1;padding:14px 10px;text-align:center;border:1px solid var(--br2);background:#111;cursor:pointer;font-size:14px;font-weight:600;color:var(--t3);transition:all .2s;font-family:var(--font);position:relative}
@@ -269,7 +274,7 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
 /* CALLOUT BOXES */
 .callout{padding:12px 16px;border-radius:var(--r);margin:10px 0;font-size:14px;line-height:1.55}
 .callout strong{font-weight:600}
-.callout-ok{background:rgba(255,255,255,.03);border:0.5px solid var(--br2);border-left:3px solid var(--ok);color:var(--ok)}
+.callout-ok{background:rgba(255,255,255,.03);border:0.5px solid var(--br2);border-left:3px solid var(--ok);color:var(--t1)}
 .callout-warn{background:rgba(255,255,255,.03);border:0.5px solid var(--br2);border-left:3px solid var(--warn);color:var(--warn)}
 .callout-info{background:rgba(255,255,255,.03);border:0.5px solid var(--br2);border-left:3px solid var(--info);color:var(--info)}
 .callout-err{background:rgba(255,255,255,.03);border:0.5px solid var(--br2);border-left:3px solid var(--err);color:var(--err)}
@@ -853,13 +858,18 @@ body.static .layer:hover,body.static .wf-card{transform:none!important}
   </div>
 </div>
 
-<!-- STEPS I'M TAKING — PLAIN TEXT -->
+<!-- STEPS I'M TAKING — TOGGLE -->
 <div class="rv" id="nav-steps" style="margin:16px 0">
-  <div style="display:inline-block;padding:5px 12px;border-radius:6px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--warn);margin-bottom:10px">&#9733; Steps I am already taking to bring these tools in-house</div>
-  <div style="padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03);font-size:14px;line-height:1.7;color:var(--t2)">
-    <strong style="color:var(--t1)"><a href="https://quillmeetings.com/">Quill</a>:</strong> This is the tool I mentioned on our last call that already does a lot of what Inkitt OS needs. The co-founder and COO, Yacob Berhane, is a friend. I have been giving him and the team product feedback as they have developed Quilliam. I am currently one of their beta testers and an ambassador for the platform, and I am trialing a free Pro version that Yacob gave me. I was giving Yacob feedback on the MCP integration earlier this week. I have direct founder access to shape how this tool evolves for our use case. He told me they're shipping mobile as we speak. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo of Quill</a>.<br><br>
-    <strong style="color:var(--t1)"><a href="https://www.getchief.ai/">Chief AI</a>:</strong> I know the founder, Shannon, through the GSB network. She is an alum who has come to speak in class. I have requested a demo and I am currently demoing Chief AI alongside Quill. I am evaluating both tools in parallel so that by the time I migrate from Build 1 to Build 2, I have already validated the integrations and have a direct line to both founding teams if we need customization.
-  </div>
+  <details class="steps-toggle">
+    <summary style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--warn);cursor:pointer;list-style:none;-webkit-appearance:none;margin-bottom:10px">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style="transition:transform .2s"><path d="M3 1l4 4-4 4"/></svg>
+      &#9733; Steps I am already taking to bring these tools in-house
+    </summary>
+    <div style="padding:14px 16px;border-radius:var(--r);border:0.5px solid var(--br2);background:rgba(255,255,255,.03);font-size:14px;line-height:1.7;color:var(--t2);margin-top:6px;animation:fadeIn .25s ease">
+      <strong style="color:var(--t1)"><a href="https://quillmeetings.com/">Quill</a>:</strong> This is the tool I mentioned on our last call that already does a lot of what Inkitt OS needs. The co-founder and COO, Yacob Berhane, is a friend. I have been giving him and the team product feedback as they have developed Quilliam. I am currently one of their beta testers and an ambassador for the platform, and I am trialing a free Pro version that Yacob gave me. I was giving Yacob feedback on the MCP integration earlier this week. I have direct founder access to shape how this tool evolves for our use case. He told me they're shipping mobile as we speak. <a href="https://www.linkedin.com/posts/yacob-berhane-38981541_chat-app-claudecode-activity-7437174093537320960-LPrN?utm_source=share&utm_medium=member_desktop&rcm=ACoAABv77jUBCV1UZyIDVsfFA6A4swssd3DWCS4">Watch a demo of Quill</a>.<br><br>
+      <strong style="color:var(--t1)"><a href="https://www.getchief.ai/">Chief AI</a>:</strong> I know the founder, Shannon, through the GSB network. She is an alum who has come to speak in class. I have requested a demo and I am currently demoing Chief AI alongside Quill. I am evaluating both tools in parallel so that by the time I migrate from Build 1 to Build 2, I have already validated the integrations and have a direct line to both founding teams if we need customization.
+    </div>
+  </details>
 </div>
 
 <!-- TIMELINE BUILD 2 -->
